@@ -1,6 +1,6 @@
-import * as types from "../actions/actionTypes";
+import * as types from "../types";
 
-const initialOnboardingState = {
+const initialState = {
   user_id: localStorage.getItem("userID") || "",
   username: localStorage.getItem("username") || "",
   token: localStorage.getItem("token") || "",
@@ -10,7 +10,7 @@ const initialOnboardingState = {
   isLoggedIn: false
 };
 
-export const onBoardingReducer = (state = initialOnboardingState, action) => {
+const authReducer = (state = initialState, action) => {
     switch (action.type) {
       case types.REQUEST_START:
         return {
@@ -54,3 +54,5 @@ export const onBoardingReducer = (state = initialOnboardingState, action) => {
         return state;
     }
   };
+
+  export default authReducer;

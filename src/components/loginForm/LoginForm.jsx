@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { login } from '../../../actions/actionCreators';
+import { login } from '../../state/actions/auth';
 
 function FormTemplate({ touched, errors, onboard }) {
   return (

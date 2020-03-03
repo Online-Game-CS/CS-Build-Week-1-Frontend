@@ -1,5 +1,5 @@
-import * as types from "./actionTypes";
-import { Axios } from "../utils/axios";
+import * as types from "../types";
+import { Axios } from "../../utils/axios";
 
 export const register = (credentials, history) => dispatch => {
   dispatch({ type: types.REQUEST_START });
@@ -13,7 +13,6 @@ export const register = (credentials, history) => dispatch => {
     })
     .catch(error => {
       dispatch({ type: types.REGISTER_FAILURE, payload: error.message });
-      alert("Username already exists");
     });
 };
 
