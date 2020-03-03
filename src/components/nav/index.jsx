@@ -1,30 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { NavLink, withRouter } from 'react-router-dom';
-
-
+import { withRouter } from 'react-router-dom';
+import bee from '../../styles/bee.png';
+import speaker from '../../styles/speaker.png';
 import { logout } from '../../state/actions/auth';
 
 const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
 	return (
 		<NavContainer>
-			<h1>Beyoncé&apos;s Assistant</h1>
 			<div>
-				<NavLink to="/">Home</NavLink>
-				<NavLink to="/about">About</NavLink>
-				{isLoggedIn && <NavLink to="/game">Game</NavLink>}
+				<Logo src={bee} />
 			</div>
-			{isLoggedIn ? (
-				<button type="button" onClick={() => logout(history)}>
-					Logout
-				</button>
-			) : (
-				<div>
-					<NavLink to="/login">Login</NavLink>
-					<NavLink to="/register">Sign Up</NavLink>
-				</div>
-			)}
+
+			<LeftContainer>
+				<LogoutButtonContainer>
+					{isLoggedIn && (
+						<button type="button" onClick={() => logout(history)}>
+							Logout
+						</button>
+					)}
+				</LogoutButtonContainer>
+				<Logo src={speaker} />
+			</LeftContainer>
 		</NavContainer>
 	);
 };
@@ -34,10 +32,23 @@ export default withRouter(connect(state => state, { logout })(NavBar));
 const NavContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
+	height: 50px;
+	padding: 2rem 2rem 1rem 2rem;
+`;
 
-	a {
-		padding: 1rem;
-	}
+const Logo = styled.img`
+	height: 53px;
+	width: 53px;
+`;
+
+const LogoutButtonContainer = styled.div`
+padding-right: 2rem;
+`;
+
+const LeftContainer = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
 `;
