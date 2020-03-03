@@ -1,12 +1,14 @@
 import React from 'react';
-import World from './components/world'
+import { Provider } from 'react-redux';
+import AppRouter from './routes'
+import store from './state/store';
 
 
 function App() {
 	return (
-		<div className="App">
-			<World />
-		</div>
+		<Provider store={store}>
+			<AppRouter />
+		</Provider>
 	);
 }
 
