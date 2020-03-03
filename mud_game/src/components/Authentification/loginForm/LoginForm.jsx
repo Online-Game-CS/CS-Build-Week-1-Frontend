@@ -12,7 +12,7 @@ function FormTemplate({ touched, errors, onboard }) {
       <Form className="formik-form">
         <div>
           {touched.username && errors.username}
-          <input
+          <Field
             type="text"
             name="username"
             class="input"
@@ -21,7 +21,7 @@ function FormTemplate({ touched, errors, onboard }) {
         </div>
         <div className="spaced-div">
           {touched.password && errors.password}
-          <input
+          <Field
             type="password"
             name="password"
             class="input"

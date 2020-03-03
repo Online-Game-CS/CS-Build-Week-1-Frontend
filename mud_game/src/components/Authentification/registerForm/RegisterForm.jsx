@@ -20,12 +20,21 @@ function FormTemplate({ touched, errors }) {
           />
         </div>
         <div>
-          {touched.password && errors.password}
+          {touched.password1 && errors.password1}
           <Field
             type="password"
-            name="password"
+            name="password1"
             class="input"
-            placeholder="Password"
+            placeholder="password"
+          />
+        </div>
+        <div>
+          {touched.password2 && errors.password2}
+          <Field
+            type="password"
+            name="password2"
+            class="input"
+            placeholder="confirm password"
           />
         </div>
 
@@ -42,24 +51,25 @@ function FormTemplate({ touched, errors }) {
   );
 }
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ username, password1, password2 }) {
     return {
       username: username || "",
-      password: password || ""
+      password1: password1 || "",
+      password2: password2 || ""
     };
   },
-  // Validation //
-  validationSchema: Yup.object().shape({
-    username: Yup.string().required(
-      " Username is required "
-    ),
-    password: Yup.string()
-      .min(
-        6,
-        "You password must have 6 characters. Try again."
-      )
-      .required("A password is required")
-  }),
+//   Validation //
+//   validationSchema: Yup.object().shape({
+//     username: Yup.string().required(
+//       " Username is required "
+//     ),
+//     password: Yup.string()
+//       .min(
+//         6,
+//         "You password must have 6 characters. Try again."
+//       )
+//       .required("A password is required")
+//   }),
   handleSubmit(values, { props }) {
     props.register(values, props.history);
   }
