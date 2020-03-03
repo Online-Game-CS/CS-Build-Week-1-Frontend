@@ -15,7 +15,6 @@ function FormTemplate({ touched, errors }) {
           <Field
             type="text"
             name="username"
-            class="input"
             placeholder="Username"
           />
         </div>
@@ -24,7 +23,7 @@ function FormTemplate({ touched, errors }) {
           <Field
             type="password"
             name="password1"
-            class="input"
+
             placeholder="password"
           />
         </div>
@@ -33,7 +32,6 @@ function FormTemplate({ touched, errors }) {
           <Field
             type="password"
             name="password2"
-            class="input"
             placeholder="confirm password"
           />
         </div>
