@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -9,7 +11,7 @@ import { logout } from '../../state/actions/auth';
 const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
 	return (
 		<NavContainer>
-			<div>
+			<div onClick={() => history.push('/')}>
 				<Logo src={bee} />
 			</div>
 
@@ -41,14 +43,17 @@ const NavContainer = styled.div`
 const Logo = styled.img`
 	height: 53px;
 	width: 53px;
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const LogoutButtonContainer = styled.div`
-padding-right: 2rem;
+	padding-right: 2rem;
 `;
 
 const LeftContainer = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 `;
