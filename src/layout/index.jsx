@@ -27,6 +27,7 @@ export default connect()(Layout);
 const LayoutContainer = styled.div`
 height: 100vh;
 width: 100%;
+background: #FFD500;
 `
 
 const ComponentContainer = styled.div`
