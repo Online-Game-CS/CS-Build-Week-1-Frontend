@@ -17,6 +17,7 @@ export const headerFont = "'Saira Extra Condensed', sans-serif";
 export const primaryFont = "'Saira Semi Condensed', sans-serif";
 
 // white window
+
 export const WhiteDiv = styled.div`
     display: flex;
     flx-direction: column;
