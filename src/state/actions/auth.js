@@ -6,8 +6,7 @@ export const register = (credentials, history) => dispatch => {
 	Axios()
 		.post(`${process.env.REACT_APP_API_BASE_URL}api/registration/`, credentials)
 		.then(res => {
-			localStorage.setItem('username', res.data.username);
-			localStorage.setItem('token', res.data.token);
+			localStorage.setItem('token', res.data.key);
 			dispatch({ type: types.REGISTER_SUCCESS, payload: res.data });
 			history.push('/');
 		})
@@ -21,8 +20,7 @@ export const login = (credentials, history) => dispatch => {
 	Axios()
 		.post(`${process.env.REACT_APP_API_BASE_URL}api/login/`, credentials)
 		.then(res => {
-			localStorage.setItem('username', res.data.username);
-			localStorage.setItem('token', res.data.token);
+			localStorage.setItem('token', res.data.key);
 			dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
 			history.push('/');
 		})
