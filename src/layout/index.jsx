@@ -10,12 +10,12 @@ const Layout = ({ component: Component, ...rest }) => {
 			{...rest}
 			render={props => {
 				return (
-					<div>
+					<LayoutContainer>
 						<NavBar />
-						<div>
+						<ComponentContainer>
 							<Component {...props} />
-						</div>
-					</div>
+						</ComponentContainer>
+					</LayoutContainer>
 				);
 			}}
 		/>
@@ -23,3 +23,15 @@ const Layout = ({ component: Component, ...rest }) => {
 };
 
 export default connect()(Layout);
+
+const LayoutContainer = styled.div`
+height: 100vh;
+width: 100%;
+`
+
+const ComponentContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+`
