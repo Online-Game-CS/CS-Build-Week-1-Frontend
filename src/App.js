@@ -1,9 +1,11 @@
 import React from 'react';
+import World from './components/world'
+
 
 function App() {
 	return (
 		<div className="App">
-			<h1>Lambda MUD</h1>
+			<World />
 		</div>
 	);
 }
