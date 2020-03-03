@@ -5,7 +5,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { login } from '../../state/actions/auth';
 
-function FormTemplate({ touched, errors, onboard }) {
+function FormTemplate({ touched, errors, auth }) {
   return (
     <div>
       <h1> Login</h1>
@@ -15,7 +15,6 @@ function FormTemplate({ touched, errors, onboard }) {
           <Field
             type="text"
             name="username"
-            class="input"
             placeholder="Username"
           />
         </div>
@@ -24,12 +23,11 @@ function FormTemplate({ touched, errors, onboard }) {
           <Field
             type="password"
             name="password"
-            class="input"
             placeholder="Password"
           />
         </div>
         { // If credentials are invalid:
-          (onboard.error && onboard.error.response && onboard.error.response.status === 401) &&
+          (auth.error && auth.error.response && auth.error.response.status === 401) &&
             <div className="error-message">
                 <p>Invalid credentials. Please try again.</p>
             </div>
@@ -40,7 +38,7 @@ function FormTemplate({ touched, errors, onboard }) {
       </Form>
         <p>
           <Link to="/register" style={{ textDecoration: "none" }}>
-            <p> Register</p>
+            Register
           </Link>{" "}
         </p>
     </div>
