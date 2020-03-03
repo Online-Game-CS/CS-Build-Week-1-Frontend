@@ -29,6 +29,8 @@ export const WhiteDiv = styled.div`
     box-sizing: border-box;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
 
+// h1 is the titlePrimary
+
     h1 {
         position: absolute;
         width: 505px;
@@ -44,6 +46,8 @@ export const WhiteDiv = styled.div`
         text-align: center;
         color: #F89F00;
     }
+
+    // h1 is for the link (play, login, credit) 
 
     a {
         position: absolute;
@@ -70,6 +74,8 @@ export const WhiteDiv = styled.div`
         box-sizing: border-box;
     }
 
+    // p is used for the text in the credit page
+
     p {
         position: absolute;
         width: 687px;
@@ -85,14 +91,88 @@ export const WhiteDiv = styled.div`
 
         color: #000000;
     }
+
+    // h2 is the second Title
+    h2 {
+        position: absolute;
+        width: 230px;
+        height: 83px;
+
+        font-family: Saira SemiCondensed;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 60px;
+        line-height: 94px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #FFD500;
+    }
+
+    // h3 is for Username and password (teext in the forms)
+
+    h3 {
+        position: absolute;
+        width: 180px;
+        height: 30px;
+
+        font-family: Saira SemiCondensed;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 55px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+        
+        color: #000000;
+    }
+
+    // h4 is used for the text under the button
+
+    h4 {
+        position: absolute;
+        width: 278px;
+        height: 27px;
+
+        font-family: Saira SemiCondensed;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 31px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #000000;
+    }
+
 `
 export const MainButton = styled.div`
     position: absolute;
     width: 285px;
     height: 62px;
-
     background: #F314A7;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+
+    h3 {
+        position: absolute;
+        width: 316px;
+        height: 56px;
+
+        font-family: Saira SemiCondensed;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 33px;
+        line-height: 52px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #FFFFFF;
+    }
 `
 
 
