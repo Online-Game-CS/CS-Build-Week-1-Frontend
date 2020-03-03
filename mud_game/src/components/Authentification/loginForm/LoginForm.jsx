@@ -12,7 +12,7 @@ function FormTemplate({ touched, errors, onboard }) {
       <Form className="formik-form">
         <div>
           {touched.username && errors.username}
-          <Field
+          <input
             type="text"
             name="username"
             class="input"
@@ -21,7 +21,7 @@ function FormTemplate({ touched, errors, onboard }) {
         </div>
         <div className="spaced-div">
           {touched.password && errors.password}
-          <Field
+          <input
             type="password"
             name="password"
             class="input"
@@ -40,7 +40,7 @@ function FormTemplate({ touched, errors, onboard }) {
       </Form>
         <p>
           <Link to="/register" style={{ textDecoration: "none" }}>
-            <h2> Register</h2>
+            <p> Register</p>
           </Link>{" "}
         </p>
     </div>
@@ -53,17 +53,17 @@ const FormikLoginForm = withFormik({
       password: password || ""
     };
   },
-  validationSchema: Yup.object().shape({
-    username: Yup.string().required(
-      "Username is required"
-    ),
-    password: Yup.string()
-      .min(
-        3,
-        "Try again."
-      )
-      .required
-  }),
+//   validationSchema: Yup.object().shape({
+//     username: Yup.string().required(
+//       "Username is required"
+//     ),
+//     password: Yup.string()
+//       .min(
+//         3,
+//         "Try again."
+//       )
+//       .required
+//   }),
 
   handleSubmit(values, {props} ) {
     props.login(values, props.history)

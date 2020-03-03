@@ -11,10 +11,6 @@ function FormTemplate({ touched, errors }) {
       <h1> Register</h1>
       <Form className="formik-form">
         <div>
-          {touched.email && errors.email}
-          <Field type="email" name="email" class="input" placeholder="Email" />
-        </div>
-        <div>
           {touched.username && errors.username}
           <Field
             type="text"
@@ -46,18 +42,14 @@ function FormTemplate({ touched, errors }) {
   );
 }
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({ email, username, password }) {
+  mapPropsToValues({ username, password }) {
     return {
-      email: email || "",
       username: username || "",
       password: password || ""
     };
   },
   // Validation //
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email("An email is required")
-      .required("Please, add an email"),
     username: Yup.string().required(
       " Username is required "
     ),
