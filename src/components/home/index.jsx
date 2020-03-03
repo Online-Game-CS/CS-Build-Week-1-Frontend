@@ -1,13 +1,29 @@
 import React from 'react';
-import { MainDiv } from "../../styles";
+import styled from 'styled-components';
+import { WhiteDiv, FirstTitle, Menu  } from "../../styles";
+import titleImg from '../../styles/title.png';
+
 
 const Home = () => {
 	return (
-		<div>
-			<h1>Welcome to Lambda MUD</h1>
-			<p>This is the description of Lambda MUD.</p>
-		</div>
+		<WhiteDiv>
+			<FirstTitle>
+				<TitleImg  src={titleImg} />
+				<br/>
+				<Menu>
+					<a href="/games">Play</a>
+					<a href="/login">Login</a>
+					<a href="/credits">Credits</a>
+				</Menu>
+			</FirstTitle>
+		</WhiteDiv>
 	);
 };
 
 export default Home;
+
+
+const TitleImg = styled.img`
+	height: auto;
+	width:  auto;
+`;

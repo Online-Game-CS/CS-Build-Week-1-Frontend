@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import bee from '../../styles/bee.png';
 import speaker from '../../styles/speaker.png';
 import { logout } from '../../state/actions/auth';
@@ -10,7 +10,9 @@ const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
 	return (
 		<NavContainer>
 			<div>
-				<Logo src={bee} />
+				<Link to="/">
+					<Logo src={bee} />
+				</Link>
 			</div>
 
 			<LeftContainer>
@@ -21,7 +23,7 @@ const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
 						</button>
 					)}
 				</LogoutButtonContainer>
-				<Logo src={speaker} />
+					<Logo src={speaker} />
 			</LeftContainer>
 		</NavContainer>
 	);

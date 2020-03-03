@@ -7,7 +7,8 @@ import Layout from '../layout';
 import Home from '../components/home';
 import World from '../components/world';
 import FormikLoginForm from '../components/loginForm/LoginForm';
-import FormikRegisterForm from '../components/registerForm/RegisterForm'
+import FormikRegisterForm from '../components/registerForm/RegisterForm';
+import Credits from '../components/credit';
 
 const AppRouter = () => {
 	return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
 				<Layout path='/login' component={FormikLoginForm}/>
 				<Layout path='/register' component={FormikRegisterForm}/>
 				<Layout path="/game" component={World} />
+				<Layout path="/credits" component={Credits} />
 			</Switch>
 		</BrowserRouter>
 	);
