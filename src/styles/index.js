@@ -172,7 +172,7 @@ export const WhiteDiv = styled.div`
 	}
 `;
 
-export const MainButton = styled.div`
+export const MainButton = styled.button`
 	width: 285px;
 	height: 62px;
 	background: ${buttonPrimary};
@@ -188,5 +188,9 @@ export const MainButton = styled.div`
 	justify-content: center;
 	color: ${backgroundLight};
 	text-transform: uppercase;
-  margin-top: 1rem;
+	margin-top: 1rem;
+
+	&:hover {
+		cursor: pointer;
+	}
 `;

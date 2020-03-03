@@ -29,7 +29,7 @@ function FormTemplate({ touched, errors, auth }) {
 							<p>Invalid credentials. Please try again.</p>
 						</div>
 					)}
-				<MainButton type="submit" className="register-button">
+				<MainButton type="submit" className="form-button">
 					Log in
 				</MainButton>
 			</Form>

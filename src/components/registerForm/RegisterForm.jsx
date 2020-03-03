@@ -28,7 +28,7 @@ function FormTemplate({ touched, errors }) {
 					{touched.password2 && errors.password2}
 				</div>
 
-				<MainButton type="submit">Register</MainButton>
+				<MainButton type="submit" className='form-button'>Register</MainButton>
 			</Form>
 			<div className="login-option">
 				<Link to="/login">Log in</Link>
