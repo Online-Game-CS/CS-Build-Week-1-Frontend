@@ -263,7 +263,8 @@ export const Menu = styled.div`
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	a {
+	a,
+	.logout {
 		text-decoration: none;
 		font-family: ${primaryFont};
 		font-style: normal;
@@ -274,12 +275,14 @@ export const Menu = styled.div`
 		padding-right: 10%;
 		padding-left: 10%;
 		border: 5px solid #ffffff;
-	}
-	a:hover {
-		width: 300px;
-		display: flex;
-		align-items: center;
-		text-align: center;
-		border: 5px solid #ffd500;
+
+		&:hover {
+			width: 300px;
+			display: flex;
+			align-items: center;
+			text-align: center;
+			border: 5px solid #ffd500;
+			cursor: pointer;
+		}
 	}
 `;
