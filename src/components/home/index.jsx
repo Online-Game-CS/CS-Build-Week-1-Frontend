@@ -1,4 +1,5 @@
 import React from 'react';
+import { MainDiv } from "../../styles";
 
 const Home = () => {
 	return (
