@@ -37,9 +37,8 @@ export const WhiteDiv = styled.div`
 
 	h1 {
 		font-family: ${primaryFont};
-		font-style: normal;
 		font-weight: 800;
-		font-size: 50px;
+		font-size: 60px;
 		line-height: 79px;
 		color: ${titlePrimary};
 		text-align: center;
@@ -192,5 +191,95 @@ export const MainButton = styled.button`
 
 	&:hover {
 		cursor: pointer;
+	}
+`;
+
+export const CreditDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 746px;
+	height: 502px;
+	margin-bottom: 10%;
+	background: #ffffff;
+	border: 1px solid #fde600;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+	/* p is used for the text in the credit page */
+	p {
+		text-align: start;
+		width: 687px;
+		font-family: ${primaryFont};
+		font-style: normal;
+		font-weight: 600;
+		font-size: 26px;
+		line-height: 41px;
+		color: #000000;
+		margin-top: -2%;
+	}
+`;
+
+export const TitleCredit = styled.img`
+	margin-top: 3%;
+	width: 332px;
+	height: 83px;
+`;
+
+export const FirstTitle = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin: 5%;
+	h2 {
+		width: 230px;
+		height: 83px;
+		font-family: ${primaryFont};
+		font-style: normal;
+		font-weight: 800;
+		font-size: 60px;
+		line-height: 94px;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		color: #ffd500;
+	}
+
+	h1 {
+		font-family: ${headerFont};
+		font-style: bold;
+		font-weight: 800;
+		font-size: 60px;
+		line-height: 79px;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		color: #f89f00;
+		margin-right: 15%;
+		margin-left: 15%;
+	}
+`;
+
+export const Menu = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	a {
+		text-decoration: none;
+		font-family: ${primaryFont};
+		font-style: normal;
+		font-weight: normal;
+		font-size: 45px;
+		line-height: 71px;
+		color: #000000;
+		padding-right: 10%;
+		padding-left: 10%;
+		border: 5px solid #ffffff;
+	}
+	a:hover {
+		width: 300px;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		border: 5px solid #ffd500;
 	}
 `;
