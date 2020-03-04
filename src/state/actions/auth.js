@@ -29,8 +29,8 @@ export const login = (credentials, history) => dispatch => {
 		});
 };
 
-export const logout = (history) => {
+export const logout = () => {
 	localStorage.clear();
-	history.push('/')
+	window.location.reload();
 	return { type: types.LOGOUT };
 };

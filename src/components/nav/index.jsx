@@ -8,23 +8,15 @@ import bee from '../../styles/bee.png';
 import speaker from '../../styles/speaker.png';
 import { logout } from '../../state/actions/auth';
 
-const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
+const NavBar = ({ history }) => {
 	return (
 		<NavContainer>
 			<div onClick={() => history.push('/')}>
 				<Logo src={bee} />
 			</div>
-
-			<LeftContainer>
-				<LogoutButtonContainer>
-					{isLoggedIn && (
-						<button type="button" onClick={() => logout(history)}>
-							Logout
-						</button>
-					)}
-				</LogoutButtonContainer>
+			<div>
 				<Logo src={speaker} />
-			</LeftContainer>
+			</div>
 		</NavContainer>
 	);
 };
@@ -46,14 +38,4 @@ const Logo = styled.img`
 	&:hover {
 		cursor: pointer;
 	}
-`;
-
-const LogoutButtonContainer = styled.div`
-	padding-right: 2rem;
-`;
-
-const LeftContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
 `;
