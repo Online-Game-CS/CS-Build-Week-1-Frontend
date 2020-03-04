@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import bee from '../../styles/bee.png';
 import speaker from '../../styles/speaker.png';
 import { logout } from '../../state/actions/auth';
@@ -9,10 +11,8 @@ import { logout } from '../../state/actions/auth';
 const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
 	return (
 		<NavContainer>
-			<div>
-				<Link to="/">
-					<Logo src={bee} />
-				</Link>
+			<div onClick={() => history.push('/')}>
+				<Logo src={bee} />
 			</div>
 
 			<LeftContainer>
@@ -23,7 +23,7 @@ const NavBar = ({ auth: { isLoggedIn }, logout, history }) => {
 						</button>
 					)}
 				</LogoutButtonContainer>
-					<Logo src={speaker} />
+				<Logo src={speaker} />
 			</LeftContainer>
 		</NavContainer>
 	);
@@ -43,14 +43,17 @@ const NavContainer = styled.div`
 const Logo = styled.img`
 	height: 53px;
 	width: 53px;
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const LogoutButtonContainer = styled.div`
-padding-right: 2rem;
+	padding-right: 2rem;
 `;
 
 const LeftContainer = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 `;

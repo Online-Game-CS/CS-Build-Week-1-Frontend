@@ -1,29 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WhiteDiv, FirstTitle, Menu  } from "../../styles";
+import { Link } from 'react-router-dom';
+import { WhiteDiv, Menu } from '../../styles';
 import titleImg from '../../styles/title.png';
-
 
 const Home = () => {
 	return (
-		<WhiteDiv>
-			<FirstTitle>
-				<TitleImg  src={titleImg} />
-				<br/>
-				<Menu>
-					<a href="/games">Play</a>
-					<a href="/login">Login</a>
-					<a href="/credits">Credits</a>
-				</Menu>
-			</FirstTitle>
-		</WhiteDiv>
+		<HomeContainer>
+			<TitleImg src={titleImg} />
+			<br />
+			<Menu>
+				<Link to="/game">Play</Link>
+				<Link to="/login">Login</Link>
+				<Link to="/credits">Credits</Link>
+			</Menu>
+		</HomeContainer>
 	);
 };
 
 export default Home;
 
-
 const TitleImg = styled.img`
 	height: auto;
-	width:  auto;
+	width: auto;
+`;
+
+const HomeContainer = styled(WhiteDiv)`
+	width: 600px;
+	height: 550px;
 `;
