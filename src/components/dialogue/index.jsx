@@ -1,68 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { MAP_HEIGHT } from '../../utils/constants';
 import dialogue from "../../state/actions/dialogue";
 
 
-const Text = [
+const textArray = [
     {
-        id : 1,
+        id : 0,
         "question": "Congratulation, you just got your dream internship. During the next three months, you have the chance to be Beyoncé’s assistant! But be careful, heavy is the hand who assist the crown. Every day, you have to make the best decision. Just don’t get fired. Move to the closest bee case to get your first task! "
-
+        
     },
     {
-        id : 2,
+        id : 1,
         "question": "It’s your first day on the job and Beyoncé is getting ready for a red carpet. What are you getting her for breakfast? Yogurt, granola, and strawberries or a 5-star breakfast?",
         "choice_1" : "Click here if you chose the yogurt, granola, and strawberries ",
         "choice_2" : "Click here if you chose the 5 start breakfast."
     },
     {
-        id : 3,
+        id : 2,
         "question": "She nods at you for choosing the healthy breakfast, then asks you to FaceTime her daughter who are you FaceTiming, Blue Or Rumi?",
         "choice_1" : "Click here if you’re FaceTiming Rumi ",
-        "choice_2" : "Click here if you’re FaceTiming Blue Ivy ",
-        "choice_3" : " ",
+        "choice_2" : "Click here if you’re FaceTiming Blue Ivy "
     },
     {
-        id : 4,
+        id : 3,
         "question": "Beyoncé needs something to do while she waits for hair and makeup. What do you suggest? Swimming or drinking and gossiping",
         "choice_1" : "Click here if you chose painting ",
         "choice_2" : "Click here if you chose drinking and gossiping"
 
     },
     {
-        id : 5,
+        id : 4,
         "question": "She tells you to play that song from Lemonade. Which song you playing Sandcastles or All Night.",
         "choice_1" : "Click here if you chose sandcastles ",
         "choice_2" : "Click here if you chose All Night"
     },
     {
-        id : 6,
+        id : 5,
         "question": "Beyoncé is running late should she go to the hotel and get ready or do it in the car?",
         "choice_1" : "Click here if she should get ready in the car",
         "choice_2" : "Click here if she should go to the hotel and get ready "
     },
     {
-        id : 7,
+        id : 6,
         "question": "She’s arrived at the hotel but the paparazzi have already spotted her Maybach. Should she risk being spotted at this event that she’s supposed to make a surprise appearance or run late and go to another hotel?",
         "choice_1" : "Click here if she should risk being spotted",
         "choice_2" : "Click here if she should run late and go to another hotel "
     },
     {
-        id : 8,
+        id : 7,
         "question": "She has thankfully not been spotted, she’s making her way to the presidential suite 10 floors upstairs should be ditch everyone and go by herself so she doesn’t draw attention or take the risk with and go with her team?",
         "choice_1" : "Click here if she should go alone to the presidential suite",
         "choice_2" : "Click here if she should go with her team to the presidential suite "
     },
     {
-        id : 9,
+        id : 8,
         "question": "The west family offers her to join them in their suite and Motel 6 is able to provide a whole floor. Which should you suggest?",
         "choice_1" : "Click here if you chose the West Suite",
         "choice_2" : "Click here if you chose the Motel 6 "
     },
     {
-        id : 10,
+        id : 9,
         "question": "Congratulation, you have survived on your first day! Are you relieved to finally go home?",
         "choice_1" : "Yes!",
         "choice_2" : "No, I want to keep breathing beyoncé air till I die"
@@ -70,12 +69,31 @@ const Text = [
 ]
 
 
-const DialogueText = props => {
-    // const fetchText = e => {
-    //     e.preventDefault();
-    //     props.dialogue();
-    // };
 
+
+const DialogueText = props => {
+    // debugger
+    const [display, setDisplay ] = useState(textArray[0].question);
+    const [choice1, setChoice1] = useState("");
+    const [choice2, setChoice2] = useState("");
+
+    const currentRoom = props.game.player.currentRoom;
+    useEffect(() => {
+        if (currentRoom){
+            if (currentRoom.bee === true){
+                setDisplay(
+                    textArray[currentRoom.question].question 
+                )
+                setChoice1(
+                    textArray[currentRoom.question].choice_1
+                )
+                setChoice2(
+                    textArray[currentRoom.question].choice_2
+                )
+            }
+        }
+	}, [currentRoom]);
+    
     return(
         <>
             <DialogueDiv>
@@ -83,21 +101,24 @@ const DialogueText = props => {
                     Instruction
                 </h1>
                 <div className="typewriter">
-                    <div className="typewriter-text">
+                    {/* <div className="typewriter-text"> */}
+                    
                     <p>
-                    Congratulation, you just got your dream internship. During the next three months, you have the chance to be Beyoncé’s assistant! But be careful, heavy is the hand who assist the crown. Every day, you have to make the best decision. Just don’t get fired. Move to the closest bee case to get your first task!  
+                        {display} 
                     </p>
-                    </div>
+                    <p>
+                        {choice1}
+                    </p>
+                    <p>
+                        {choice2} 
+                    </p>
+                    {/* </div> */}
                 </div>
-            
             </DialogueDiv>
 
         </>
     )
 }
-
-
-
 export default connect (state => state, {dialogue})(DialogueText);
 
 

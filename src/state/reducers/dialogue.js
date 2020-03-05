@@ -3,7 +3,7 @@ import * as types from '../types';
 const initialState = {
 	id: localStorage.getItem('id') || '',
 	question: localStorage.getItem('question') || '',
-    token: localStorage.getItem('token') || '',
+	token: localStorage.getItem('token') || '',
     bee: false,
 	message: '',
 	error: {},
