@@ -7,6 +7,8 @@ import Map from '../map';
 import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
 import { initializePlayer } from '../../state/actions/game';
 import Dialogue from '../dialogue';
+import Fired from '../fired';
+import Complete from '../complete';
 
 const World = ({ initializePlayer }) => {
 	useEffect(() => {
@@ -18,6 +20,8 @@ const World = ({ initializePlayer }) => {
 			<MainDiv>
 				<Dialogue />
 				<WorldDiv>
+					<Complete />
+					<Fired />
 					<Map />
 					<Player />
 				</WorldDiv>
