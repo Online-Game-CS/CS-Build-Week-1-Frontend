@@ -3,133 +3,72 @@ import { axiosWithAuth } from '../../utils/axios';
 import store from '../store';
 import { SPRITE_SIZE } from '../../utils/constants';
 
-export const getRooms = () => dispatch => {
+export const getRooms = () => async dispatch => {
 	dispatch({ type: types.GET_ROOMS_START });
-	axiosWithAuth()
-		.get(`${process.env.REACT_APP_API_BASE_URL}api/adv/getrooms/`)
-		.then(res => {
-			dispatch({
-				type: types.GET_ROOMS_SUCCESS,
-				payload: res.data.rooms
-			});
-		})
-		.catch(err => {
-			dispatch({
-				type: types.GET_ROOMS_FAILURE,
-				payload: err.message
-			});
+
+	try {
+		const response = await axiosWithAuth().get(
+			`${process.env.REACT_APP_API_BASE_URL}api/adv/getrooms/`
+		);
+
+		dispatch({
+			type: types.GET_ROOMS_SUCCESS,
+			payload: response.data.rooms
 		});
+	} catch (err) {
+		dispatch({
+			type: types.GET_ROOMS_FAILURE,
+			payload: err.message
+		});
+	}
 };
 
-export const initializePlayer = () => dispatch => {
+export const initializePlayer = () => async dispatch => {
 	dispatch({ type: types.INIT_PLAYER_START });
-	axiosWithAuth()
-		.get(`${process.env.REACT_APP_API_BASE_URL}api/adv/init/`)
-		.then(res => {
-			dispatch({
-				type: types.INIT_PLAYER_SUCCESS,
-				payload: res.data
-			});
-		})
-		.catch(err => {
-			dispatch({
-				type: types.INIT_PLAYER_FAILURE,
-				payload: err.message
-			});
-		});
-};
-
-export const movePlayerUp = () => async dispatch => {
-	dispatch({ type: types.MOVE_PLAYER_START });
-
 	try {
-		const currentPosition = await store.getState().game.player.position;
-
-		const response = await axiosWithAuth().post(
-			`${process.env.REACT_APP_API_BASE_URL}api/adv/move/`,
-			{ direction: 'n' }
+		const response = await axiosWithAuth().get(
+			`${process.env.REACT_APP_API_BASE_URL}api/adv/init/`
 		);
 
+		const room = await store
+			.getState()
+			.game.rooms.find(r => r.id === response.data.room_id);
+
 		dispatch({
-			type: types.MOVE_PLAYER_UP,
+			type: types.INIT_PLAYER_SUCCESS,
 			payload: {
-				newPosition: [currentPosition[0], currentPosition[1] - SPRITE_SIZE],
-				details: response.data
+				position: [room.j * SPRITE_SIZE, room.i * SPRITE_SIZE],
+				currentRoom: room,
+				...response.data
 			}
 		});
 	} catch (err) {
 		dispatch({
-			type: types.MOVE_PLAYER_FAILURE,
+			type: types.INIT_PLAYER_FAILURE,
 			payload: err.message
 		});
 	}
 };
 
-export const movePlayerDown = () => async dispatch => {
+export const movePlayer = direction => async dispatch => {
 	dispatch({ type: types.MOVE_PLAYER_START });
 
 	try {
-		const currentPosition = await store.getState().game.player.position;
 		const response = await axiosWithAuth().post(
 			`${process.env.REACT_APP_API_BASE_URL}api/adv/move/`,
-			{ direction: 's' }
+			{ direction: `${direction}` }
 		);
 
+		const room = await store
+			.getState()
+			.game.rooms.find(r => r.id === response.data.room_id);
+
 		dispatch({
-			type: types.MOVE_PLAYER_DOWN,
+			type: types.MOVE_PLAYER_SUCCESS,
 			payload: {
-				newPosition: [currentPosition[0], currentPosition[1] + SPRITE_SIZE],
-				details: response.data
-			}
-		});
-	} catch (err) {
-		dispatch({
-			type: types.MOVE_PLAYER_FAILURE,
-			payload: err.message
-		});
-	}
-};
-
-export const movePlayerRight = () => async dispatch => {
-	dispatch({ type: types.MOVE_PLAYER_START });
-
-	try {
-		const currentPosition = await store.getState().game.player.position;
-		const response = await axiosWithAuth().post(
-			`${process.env.REACT_APP_API_BASE_URL}api/adv/move/`,
-			{ direction: 'e' }
-		);
-
-		dispatch({
-			type: types.MOVE_PLAYER_RIGHT,
-			payload: {
-				newPosition: [currentPosition[0] + SPRITE_SIZE, currentPosition[1]],
-				details: response.data
-			}
-		});
-	} catch (err) {
-		dispatch({
-			type: types.MOVE_PLAYER_FAILURE,
-			payload: err.message
-		});
-	}
-};
-
-export const movePlayerLeft = () => async dispatch => {
-	dispatch({ type: types.MOVE_PLAYER_START });
-
-	try {
-		const currentPosition = await store.getState().game.player.position;
-		const response = await axiosWithAuth().post(
-			`${process.env.REACT_APP_API_BASE_URL}api/adv/move/`,
-			{ direction: 'w' }
-		);
-
-		dispatch({
-			type: types.MOVE_PLAYER_LEFT,
-			payload: {
-				newPosition: [currentPosition[0] - SPRITE_SIZE, currentPosition[1]],
-				details: response.data
+				currentRoom: room,
+				position: [room.j * SPRITE_SIZE, room.i * SPRITE_SIZE],
+				...response.data
 			}
 		});
 	} catch (err) {
@@ -158,4 +97,16 @@ export const completeChallenge = () => async dispatch => {
 			payload: err.message
 		});
 	}
+};
+
+export const failChallenge = () => dispatch => {
+	dispatch({
+		type: types.FAIL_CHALLENGE
+	});
+};
+
+export const completeGame = () => dispatch => {
+	dispatch({
+		type: types.COMPLETE_GAME
+	});
 };

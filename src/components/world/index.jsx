@@ -5,40 +5,38 @@ import styled from 'styled-components';
 import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
 import Player from '../player';
 import Map from '../map';
-import { getRooms, initializePlayer } from '../../state/actions/game';
+import { initializePlayer } from '../../state/actions/game';
+import Dialogue from '../dialogue';
 
-const World = ({
-	auth: { isLoggedIn },
-	getRooms,
-	initializePlayer,
-	history
-}) => {
+const World = ({ initializePlayer }) => {
 	useEffect(() => {
-		getRooms();
 		initializePlayer();
 	}, []);
 
 	return (
 		<div>
-			{isLoggedIn ? (
+			<MainDiv>
+				<Dialogue />
 				<WorldDiv>
 					<Map />
 					<Player />
 				</WorldDiv>
-			) : (
-				history.push('/')
-			)}
+			</MainDiv>
 		</div>
 	);
 };
 
-export default withRouter(
-	connect(state => state, { getRooms, initializePlayer })(World)
-);
+export default withRouter(connect(state => state, { initializePlayer })(World));
 
 const WorldDiv = styled.div`
 	position: relative;
 	width: ${MAP_WIDTH}px;
 	height: ${MAP_HEIGHT}px;
-	margin: 20px auto;
+`;
+
+const MainDiv = styled.div`
+	display: flex;
+	justify-content: space-between;
+	height: ${MAP_HEIGHT}px;
+	width: 1200px;
 `;

@@ -2,15 +2,13 @@ import * as types from '../types';
 
 const initialState = {
 	rooms: [],
-	map: [],
 	player: {
-		details: {},
-		position: [0, 0]
+		position: [0, 0],
+		currentRoom: ''
 	},
 	isFetching: false,
 	isFired: false,
-	showDialog: false,
-	currentRoom: ''
+	isFinished: false,
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -37,25 +35,16 @@ const gameReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isFetching: false,
-				player: { ...state.player, details: action.payload }
+				player: { ...state.player, ...action.payload }
 			};
 
-		case types.MOVE_PLAYER_UP:
-		case types.MOVE_PLAYER_DOWN:
-		case types.MOVE_PLAYER_RIGHT:
-		case types.MOVE_PLAYER_LEFT:
+		case types.MOVE_PLAYER_SUCCESS:
 			return {
 				...state,
 				isFetching: false,
 				player: {
-					position: action.payload.newPosition,
-					details: {
-						...state.player.details,
-						title: action.payload.details.title,
-						description: action.payload.details.description,
-						players: action.payload.players,
-						error: action.payload.err_msg
-					}
+					...state.player,
+					...action.payload
 				}
 			};
 
@@ -65,11 +54,20 @@ const gameReducer = (state = initialState, action) => {
 				isFetching: false,
 				player: {
 					...state.player,
-					details: {
-						...state.player.details,
-						score: action.payload.score
-					}
+					score: action.payload.score
 				}
+			};
+
+		case types.FAIL_CHALLENGE:
+			return {
+				...state,
+				isFired: true
+			};
+
+		case types.COMPLETE_GAME:
+			return {
+				...state,
+				isFinished: true
 			};
 
 		// Request Failures
