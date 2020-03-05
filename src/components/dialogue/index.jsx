@@ -143,12 +143,13 @@ const DialogueDiv = styled.div`
     background: rgb(248, 248, 248);
     padding: 12px 24px;
     height: ${MAP_HEIGHT}px;
-    width:320px; 
+    width:350px; 
     border: 3px solid black ; 
     display:flex;
     flex-direction:column;
 
     margin-right: 2rem;
+    box-sizing: border-box;
     h1 {
         text-align:center;
         font-family: Courier, monospace;

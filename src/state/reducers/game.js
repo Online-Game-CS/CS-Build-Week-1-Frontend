@@ -4,11 +4,12 @@ const initialState = {
 	rooms: [],
 	player: {
 		position: [0, 0],
-		currentRoom: ''
+		currentRoom: '',
+		score: 0
 	},
 	isFetching: false,
 	isFired: false,
-	isFinished: false,
+	isFinished: false
 };
 
 const gameReducer = (state = initialState, action) => {
