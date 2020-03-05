@@ -13,5 +13,6 @@ const MapDiv = styled.div`
 	height: ${MAP_HEIGHT}px;
 	background-color: grey;
 	border: 1px solid black;
-	margin: 10px auto;
+	margin: 10px auto 10px;
+	margin-bottom: 30px;
 `;

@@ -4,10 +4,14 @@ import thunk from 'redux-thunk';
 
 import playerReducer from './reducers/player';
 import authReducer from './reducers/auth';
+import dialogueReducer from './reducers/dialogue';
+import completeChallengeReducer from './reducers/completeChallenge';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	player: playerReducer
+	player: playerReducer,
+	dialogue: dialogueReducer,
+	completeChallenge : completeChallengeReducer
 });
 
 const store = createStore(
