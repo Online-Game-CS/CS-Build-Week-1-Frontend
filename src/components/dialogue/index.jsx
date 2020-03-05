@@ -17,7 +17,7 @@ const DialogueText = props => {
                     Instruction
                 </h1>
                 <p>
-                    {props.dialogue}
+                    {/* {props.dialogue} */}
                 </p>
             
             </DialogueDiv>
@@ -39,12 +39,13 @@ const DialogueDiv = styled.div`
     height: ${MAP_HEIGHT}px;
     width:320px; 
     border: 3px solid black ; 
+    margin-right: 2rem;
     h1 {
         text-align:center;
     }
 
     a {
-        text-coloration : none;
+        /* text-coloration : none; */
 
     }
 `

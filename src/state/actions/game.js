@@ -13,7 +13,7 @@ export const getRooms = () => async dispatch => {
 
 		dispatch({
 			type: types.GET_ROOMS_SUCCESS,
-			payload: response.data.rooms
+			payload: response.data.rooms.sort((a, b) => a.id - b.id)
 		});
 	} catch (err) {
 		dispatch({

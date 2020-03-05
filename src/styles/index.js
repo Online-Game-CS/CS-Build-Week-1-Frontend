@@ -6,6 +6,7 @@ export const backgroundPrimary = '#FFD500';
 export const backgroundLight = '#FFFFFF';
 export const buttonPrimary = '#F314A7';
 export const inputBackground = 'rgba(196, 196, 196, 0.21)';
+export const wallBackground = '#696b70'
 
 // Font
 export const titlePrimary = '#F89F00';
