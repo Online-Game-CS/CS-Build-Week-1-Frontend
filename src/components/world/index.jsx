@@ -5,11 +5,17 @@ import styled from 'styled-components';
 import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
 import Player from '../player';
 import Map from '../map';
-import { getRooms } from '../../state/actions/game';
+import { getRooms, initializePlayer } from '../../state/actions/game';
 
-const World = ({ auth: { isLoggedIn }, getRooms, history }) => {
+const World = ({
+	auth: { isLoggedIn },
+	getRooms,
+	initializePlayer,
+	history
+}) => {
 	useEffect(() => {
 		getRooms();
+		initializePlayer();
 	}, []);
 
 	return (
@@ -26,7 +32,9 @@ const World = ({ auth: { isLoggedIn }, getRooms, history }) => {
 	);
 };
 
-export default withRouter(connect(state => state, { getRooms })(World));
+export default withRouter(
+	connect(state => state, { getRooms, initializePlayer })(World)
+);
 
 const WorldDiv = styled.div`
 	position: relative;

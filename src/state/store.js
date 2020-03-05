@@ -2,13 +2,11 @@
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import playerReducer from './reducers/player';
 import authReducer from './reducers/auth';
 import gameReducer from './reducers/game';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	player: playerReducer,
 	game: gameReducer
 });
 

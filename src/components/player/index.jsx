@@ -8,10 +8,12 @@ import {
 	movePlayerDown,
 	movePlayerRight,
 	movePlayerLeft
-} from '../../state/actions/player';
+} from '../../state/actions/game';
 
 const Player = ({
-	player: { position },
+	game: {
+		player: { position }
+	},
 	movePlayerUp,
 	movePlayerDown,
 	movePlayerRight,
@@ -22,7 +24,7 @@ const Player = ({
 			e.preventDefault();
 			switch (e.keyCode) {
 				case 38:
-				return 	movePlayerUp();
+					return movePlayerUp();
 				case 40:
 					return movePlayerDown();
 				case 39:
