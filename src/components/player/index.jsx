@@ -4,31 +4,27 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import walkSprite from './player_walk.png';
 import {
-	movePlayerUp,
-	movePlayerDown,
-	movePlayerRight,
-	movePlayerLeft
-} from '../../state/actions/player';
+	movePlayer,
+} from '../../state/actions/game';
 
 const Player = ({
-	player: { position },
-	movePlayerUp,
-	movePlayerDown,
-	movePlayerRight,
-	movePlayerLeft
+	game: {
+		player: { position }
+	},
+	movePlayer,
 }) => {
 	useEffect(() => {
 		window.addEventListener('keydown', e => {
 			e.preventDefault();
 			switch (e.keyCode) {
 				case 38:
-				return 	movePlayerUp();
+					return movePlayer('n');
 				case 40:
-					return movePlayerDown();
+					return movePlayer('s');
 				case 39:
-					return movePlayerRight();
+					return movePlayer('e');
 				case 37:
-					return movePlayerLeft();
+					return movePlayer('w');
 				default:
 					return e.keyCode;
 			}
@@ -39,10 +35,7 @@ const Player = ({
 };
 
 export default connect(state => state, {
-	movePlayerUp,
-	movePlayerDown,
-	movePlayerRight,
-	movePlayerLeft
+	movePlayer,
 })(Player);
 
 const PlayerDiv = styled.div`

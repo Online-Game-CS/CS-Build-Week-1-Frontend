@@ -5,19 +5,26 @@ import { connect } from 'react-redux';
 import NavBar from '../components/nav';
 import { backgroundPrimary } from '../styles';
 import store from '../state/store';
+import { getRooms } from '../state/actions/game';
 
-const Layout = ({ component: Component, ...rest }) => {
+const Layout = ({
+	component: Component,
+	auth: { isLoggedIn },
+	getRooms,
+	...rest
+}) => {
 	const checkAuth = () => {
 		const token = localStorage.getItem('token');
 
 		if (token) {
-			store.dispatch({ type: 'LOGIN_SUCCESS', payload: {token} });
+			getRooms();
+			store.dispatch({ type: 'LOGIN_SUCCESS', payload: { token } });
 		}
 	};
 
 	useEffect(() => {
 		checkAuth();
-	}, []);
+	}, [isLoggedIn]);
 
 	return (
 		<Route
@@ -36,7 +43,7 @@ const Layout = ({ component: Component, ...rest }) => {
 	);
 };
 
-export default connect()(Layout);
+export default connect(state => state, { getRooms })(Layout);
 
 const LayoutContainer = styled.div`
 	height: 100vh;
