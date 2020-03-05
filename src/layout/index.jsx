@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NavBar from '../components/nav';
 import { backgroundPrimary } from '../styles';
+import store from '../state/store';
 
 const Layout = ({ component: Component, ...rest }) => {
+	const checkAuth = () => {
+		const token = localStorage.getItem('token');
+
+		if (token) {
+			store.dispatch({ type: 'LOGIN_SUCCESS', payload: {token} });
+		}
+	};
+
+	useEffect(() => {
+		checkAuth();
+	}, []);
+
 	return (
 		<Route
 			{...rest}

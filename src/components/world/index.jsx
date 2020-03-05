@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
@@ -6,8 +6,13 @@ import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
 import Player from '../player';
 import Map from '../map';
 import Dialogue from "../dialogue";
+import { getRooms } from '../../state/actions/game';
 
-const World = ({ auth: { isLoggedIn }, history }) => {
+const World = ({ auth: { isLoggedIn }, getRooms, history }) => {
+	useEffect(() => {
+		getRooms();
+	}, []);
+
 	return (
 		<div>
 			{/* {isLoggedIn ? ( */}
@@ -25,7 +30,7 @@ const World = ({ auth: { isLoggedIn }, history }) => {
 	);
 };
 
-export default withRouter(connect(state => state)(World));
+export default withRouter(connect(state => state, { getRooms })(World));
 
 const WorldDiv = styled.div`
 	position: relative;

@@ -26,3 +26,7 @@ export const NEXT_QUESTION = "NEXT_QUESTION";
 
 // Player complete challenge
 export const COMPLETE_GAME = "COMPLETE_GAME";
+// Rooms
+export const GET_ROOMS_START = 'GET_ROOMS_START';
+export const GET_ROOMS_SUCCESS = 'GET_ROOMS_SUCCESS';
+export const GET_ROOMS_FAILURE = 'GET_ROOMS_FAILURE';
