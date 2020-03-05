@@ -5,15 +5,27 @@ import styled from 'styled-components';
 import Player from '../player';
 import Map from '../map';
 import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
-import { initializePlayer } from '../../state/actions/game';
+import { initializePlayer, completeGame } from '../../state/actions/game';
 import Dialogue from '../dialogue';
 import Fired from '../fired';
 import Complete from '../complete';
 
-const World = ({ initializePlayer }) => {
+const World = ({
+	game: {
+		player: { score }
+	},
+	initializePlayer,
+	completeGame
+}) => {
 	useEffect(() => {
 		initializePlayer();
 	}, []);
+
+	useEffect(() => {
+		if (score === 10) {
+			completeGame();
+		}
+	}, [score]);
 
 	return (
 		<div>
@@ -30,7 +42,7 @@ const World = ({ initializePlayer }) => {
 	);
 };
 
-export default withRouter(connect(state => state, { initializePlayer })(World));
+export default withRouter(connect(state => state, { initializePlayer, completeGame })(World));
 
 const WorldDiv = styled.div`
 	position: relative;
@@ -43,5 +55,7 @@ const WorldDiv = styled.div`
 const MainDiv = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	width: 1200px;
+	height: ${MAP_HEIGHT}px;
 `;
