@@ -1,18 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
+import Room from '../room';
 
-const Map = () => {
-	return <MapDiv />;
+const Map = ({ game: { rooms } }) => {
+	return (
+		<MapDiv>
+			{rooms.map(room => {
+				return <Room  key={room.id} {...room} />;
+			})}
+		</MapDiv>
+	);
 };
 
-export default Map;
+export default connect(state => state)(Map);
 
 const MapDiv = styled.div`
 	width: ${MAP_WIDTH}px;
 	height: ${MAP_HEIGHT}px;
-	background-color: grey;
-	border: 1px solid black;
-	margin: 10px auto 10px;
-	margin-bottom: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+
 `;
