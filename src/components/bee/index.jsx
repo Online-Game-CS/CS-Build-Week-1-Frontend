@@ -27,6 +27,7 @@ const BeeDiv = styled.div`
 const BeeImg = styled.img`
 	height: ${SPRITE_SIZE}px;
 	width: ${SPRITE_SIZE}px;
+	display: ${props => (props.score < props.question ? 'block' : 'none')};
 	animation: ${props =>
 		props.question === props.score + 1 ? 'pulse 1.2s infinite' : 'none'};
 	@keyframes pulse {
