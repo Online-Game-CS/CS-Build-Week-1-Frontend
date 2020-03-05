@@ -19,6 +19,7 @@ const gameReducer = (state = initialState, action) => {
 		case types.GET_ROOMS_START:
 		case types.INIT_PLAYER_START:
 		case types.MOVE_PLAYER_START:
+		case types.COMPLETE_CHALLENGE_START:
 			return {
 				...state,
 				isFetching: true
@@ -58,10 +59,23 @@ const gameReducer = (state = initialState, action) => {
 				}
 			};
 
+		case types.COMPLETE_CHALLENGE_SUCCESS:
+			return {
+				...state,
+				isFetching: false,
+				player: {
+					...state.player,
+					details: {
+						...state.player.details,
+						score: action.payload.score
+					}
+				}
+			};
 
 		// Request Failures
 		case types.GET_ROOMS_FAILURE:
 		case types.INIT_PLAYER_FAILURE:
+		case types.COMPLETE_CHALLENGE_FAILURE:
 			return {
 				...state,
 				isFetching: false

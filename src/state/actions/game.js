@@ -64,6 +64,7 @@ export const movePlayerUp = () => async dispatch => {
 		});
 	}
 };
+
 export const movePlayerDown = () => async dispatch => {
 	dispatch({ type: types.MOVE_PLAYER_START });
 
@@ -88,6 +89,7 @@ export const movePlayerDown = () => async dispatch => {
 		});
 	}
 };
+
 export const movePlayerRight = () => async dispatch => {
 	dispatch({ type: types.MOVE_PLAYER_START });
 
@@ -112,6 +114,7 @@ export const movePlayerRight = () => async dispatch => {
 		});
 	}
 };
+
 export const movePlayerLeft = () => async dispatch => {
 	dispatch({ type: types.MOVE_PLAYER_START });
 
@@ -137,3 +140,22 @@ export const movePlayerLeft = () => async dispatch => {
 	}
 };
 
+export const completeChallenge = () => async dispatch => {
+	dispatch({ type: types.COMPLETE_CHALLENGE_START });
+
+	try {
+		const response = await axiosWithAuth().get(
+			`${process.env.REACT_APP_API_BASE_URL}api/adv/completechallenge/`
+		);
+
+		dispatch({
+			type: types.COMPLETE_CHALLENGE_SUCCESS,
+			payload: response.data
+		});
+	} catch (err) {
+		dispatch({
+			type: types.COMPLETE_CHALLENGE_FAILURE,
+			payload: err.message
+		});
+	}
+};
