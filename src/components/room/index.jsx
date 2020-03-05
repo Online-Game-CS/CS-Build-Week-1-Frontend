@@ -2,20 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { SPRITE_SIZE } from '../../utils/constants';
+import Bee from '../bee';
 import {
 	titlePrimary,
 	titleSecondary,
 	inputBackground,
 	wallBackground
 } from '../../styles';
-import bee from '../../styles/bee.png';
 
 // j = x, i = y
 
 const Room = room => {
 	return (
 		<RoomDiv i={room.i} j={room.j} wall={room.wall}>
-			{room.bee ? <BeeImg src={bee} alt="Challenge" /> : null}
+			{room.bee ? <Bee question={room.question} /> : null}
 		</RoomDiv>
 	);
 };
@@ -38,9 +38,4 @@ const RoomDiv = styled.div`
 	}};
 	border: 1px solid ${inputBackground};
 	box-sizing: border-box;
-`;
-
-const BeeImg = styled.img`
-	height: ${SPRITE_SIZE}px;
-	width: ${SPRITE_SIZE}px;
 `;

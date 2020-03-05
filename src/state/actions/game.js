@@ -37,6 +37,7 @@ export const initializePlayer = () => async dispatch => {
 		dispatch({
 			type: types.INIT_PLAYER_SUCCESS,
 			payload: {
+				isFired: false,
 				position: [room.j * SPRITE_SIZE, room.i * SPRITE_SIZE],
 				currentRoom: room,
 				...response.data
