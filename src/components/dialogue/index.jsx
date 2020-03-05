@@ -8,12 +8,12 @@ const textArray = [
 	{
 		id: 0,
 		question:
-			'Congratulation,\n you just got your dream internship. During the next three months, you have the chance to be Beyoncé’s assistant! But be careful, heavy is the hand who assist the crown. Every day, you have to make the best decision. Just don’t get fired. Move to the closest bee case to get your first task! '
+			'Congratulations, you just got your dream internship. During the next three months, you have the chance to be Beyoncé’s assistant! But be careful, heavy is the hand who assist the crown. Every day, you have to make the best decision. Just don’t get fired. Move to the closest bee case to get your first task! '
 	},
 	{
 		id: 1,
 		question:
-			'It’s your first day on the job\n and Beyoncé is getting ready for a red carpet. What are you getting her for breakfast? Yogurt, granola, and strawberries or a 5-star breakfast?',
+			'It’s your first day on the job and Beyoncé is getting ready for a red carpet. What are you getting her for breakfast? Yogurt, granola, and strawberries or a 5-star breakfast?',
 		choice_1: 'Click here if you chose the yogurt, granola, and strawberries ',
 		choice_2: 'Click here if you chose the 5 start breakfast.'
 	},
