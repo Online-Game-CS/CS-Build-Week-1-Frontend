@@ -8,31 +8,31 @@ import dialogue from "../../state/actions/dialogue";
 const textArray = [
     {
         id : 0,
-        "question": "Congratulation, you just got your dream internship. During the next three months, you have the chance to be Beyoncé’s assistant! But be careful, heavy is the hand who assist the crown. Every day, you have to make the best decision. Just don’t get fired. Move to the closest bee case to get your first task! "
+        "question": "Congratulation, you just got your dream internship.-You have the chance to be Beyoncé’s assistant!- But be careful, heavy is the hand who assist the crown.-Every day, you have to make the best decision.-Just don’t get fired.-Move to the closest bee case to get your first task! "
         
     },
     {
         id : 1,
-        "question": "It’s your first day on the job and Beyoncé is getting ready for a red carpet. What are you getting her for breakfast? Yogurt, granola, and strawberries or a 5-star breakfast?",
+        "question": "It’s your first day on the job and Beyoncé is getting ready for a red carpet.-What are you getting her for breakfast? Yogurt, granola, and strawberries or a 5-star breakfast?",
         "choice_1" : "Click here if you chose the yogurt, granola, and strawberries ",
         "choice_2" : "Click here if you chose the 5 start breakfast."
     },
     {
         id : 2,
-        "question": "She nods at you for choosing the healthy breakfast, then asks you to FaceTime her daughter who are you FaceTiming, Blue Or Rumi?",
+        "question": "She nods at you for choosing the healthy breakfast.-She then asks you to FaceTime her daughter who are you FaceTiming, Blue Or Rumi?",
         "choice_1" : "Click here if you’re FaceTiming Rumi ",
         "choice_2" : "Click here if you’re FaceTiming Blue Ivy "
     },
     {
         id : 3,
-        "question": "Beyoncé needs something to do while she waits for hair and makeup. What do you suggest? Swimming or drinking and gossiping",
+        "question": "Beyoncé needs something to do while she waits for hair and makeup.-What do you suggest? Swimming or drinking and gossiping",
         "choice_1" : "Click here if you chose painting ",
         "choice_2" : "Click here if you chose drinking and gossiping"
 
     },
     {
         id : 4,
-        "question": "She tells you to play that song from Lemonade. Which song you playing Sandcastles or All Night.",
+        "question": "She tells you to play that song from Lemonade.-Which song are you playing Sandcastles or All Night.",
         "choice_1" : "Click here if you chose sandcastles ",
         "choice_2" : "Click here if you chose All Night"
     },
@@ -44,31 +44,31 @@ const textArray = [
     },
     {
         id : 6,
-        "question": "She’s arrived at the hotel but the paparazzi have already spotted her Maybach. Should she risk being spotted at this event that she’s supposed to make a surprise appearance or run late and go to another hotel?",
+        "question": "She’s arrived at the hotel but the paparazzi have already spotted her Maybach.-Should she risk being spotted at this event that she’s supposed to make a surprise appearance or run late and go to another hotel?",
         "choice_1" : "Click here if she should risk being spotted",
         "choice_2" : "Click here if she should run late and go to another hotel "
     },
     {
         id : 7,
-        "question": "She has thankfully not been spotted, she’s making her way to the presidential suite 10 floors upstairs should be ditch everyone and go by herself so she doesn’t draw attention or take the risk with and go with her team?",
+        "question": "She has thankfully not been spotted.-She’s making her way to the presidential suite 10 floors upstairs should be ditch everyone and go by herself so she doesn’t draw attention or take the risk with and go with her team?",
         "choice_1" : "Click here if she should go alone to the presidential suite",
         "choice_2" : "Click here if she should go with her team to the presidential suite "
     },
     {
         id : 8,
-        "question": "The west family offers her to join them in their suite and Motel 6 is able to provide a whole floor. Which should you suggest?",
+        "question": "The west family offers her to join them in their suite and Motel 6 is able to provide a whole floor.-Which should you suggest?",
         "choice_1" : "Click here if you chose the West Suite",
         "choice_2" : "Click here if you chose the Motel 6 "
     },
     {
         id : 9,
-        "question": "The west family offers her to join them in their suite and Motel 6 is able to provide a whole floor. Which should you suggest?",
+        "question": "The west family offers her to join them in their suite and Motel 6 is able to provide a whole floor.-Which should you suggest?",
         "choice_1" : "Click here if you chose the West Suite",
         "choice_2" : "Click here if you chose the Motel 6 "
     },
     {
         id : 10,
-        "question": "Congratulation, you have survived on your first day! Are you relieved to finally go home?",
+        "question": "Congratulation, you have survived on your first day!-Are you relieved to finally go home?",
         "choice_1" : "Yes!",
         "choice_2" : "No, I want to keep breathing beyoncé air till I die"
     }
@@ -112,9 +112,9 @@ const DialogueText = props => {
                 <div className="typewriter">
                     {/* <div className="typewriter-text"> */}
                     
-                    <p>
-                        {display} 
-                    </p>
+                    <div>
+                        {display.split('-').map((item, i) => <p key={i}>{item}</p>)} 
+                    </div>
                     <a href="/">
                         {choice1}
                     </a> <br/>
