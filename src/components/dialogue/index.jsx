@@ -62,6 +62,12 @@ const textArray = [
     },
     {
         id : 9,
+        "question": "The west family offers her to join them in their suite and Motel 6 is able to provide a whole floor. Which should you suggest?",
+        "choice_1" : "Click here if you chose the West Suite",
+        "choice_2" : "Click here if you chose the Motel 6 "
+    },
+    {
+        id : 10,
         "question": "Congratulation, you have survived on your first day! Are you relieved to finally go home?",
         "choice_1" : "Yes!",
         "choice_2" : "No, I want to keep breathing beyoncé air till I die"
@@ -106,12 +112,12 @@ const DialogueText = props => {
                     <p>
                         {display} 
                     </p>
-                    <p>
+                    <a href="/">
                         {choice1}
-                    </p>
-                    <p>
+                    </a>
+                    <a href="/">
                         {choice2} 
-                    </p>
+                    </a>
                     {/* </div> */}
                 </div>
             </DialogueDiv>
