@@ -13,7 +13,7 @@ const Player = ({
 	movePlayer
 }) => {
 	useEffect(() => {
-		window.addEventListener('keydown', e => {
+		window.addEventListener('keyup', e => {
 			e.preventDefault();
 			switch (e.keyCode) {
 				case 38:
