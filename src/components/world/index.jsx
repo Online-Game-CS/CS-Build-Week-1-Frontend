@@ -6,6 +6,7 @@ import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
 import Player from '../player';
 import Map from '../map';
 import { getRooms, initializePlayer } from '../../state/actions/game';
+import Dialogue from "../dialogue";
 
 const World = ({
 	auth: { isLoggedIn },
@@ -20,14 +21,13 @@ const World = ({
 
 	return (
 		<div>
-			{isLoggedIn ? (
-				<WorldDiv>
-					<Map />
-					<Player />
-				</WorldDiv>
-			) : (
-				history.push('/')
-			)}
+				<MainDiv>
+					<Dialogue/>
+					<WorldDiv>
+						<Map />
+						<Player />
+					</WorldDiv>
+				</MainDiv>
 		</div>
 	);
 };
@@ -39,6 +39,12 @@ export default withRouter(
 const WorldDiv = styled.div`
 	position: relative;
 	width: ${MAP_WIDTH}px;
-	height: ${MAP_HEIGHT}px;
-	margin: 20px auto;
+	height: ${MAP_HEIGHT}px; 
 `;
+
+const MainDiv = styled.div`
+	display: flex;
+	justify-content:space-between;
+	height: ${MAP_HEIGHT}px;
+	width: 1200px;
+`
