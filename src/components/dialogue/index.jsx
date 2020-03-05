@@ -74,10 +74,12 @@ const textArray = [
     }
 ]
 
-
-
+function refreshPage(){ 
+    window.location.reload(); 
+}
 
 const DialogueText = props => {
+    
     // debugger
     const [display, setDisplay ] = useState(textArray[0].question);
     const [choice1, setChoice1] = useState("");
@@ -106,6 +108,7 @@ const DialogueText = props => {
                 <h1>
                     Instruction
                 </h1>
+                <div className="text-div">
                 <div className="typewriter">
                     {/* <div className="typewriter-text"> */}
                     
@@ -114,11 +117,17 @@ const DialogueText = props => {
                     </p>
                     <a href="/">
                         {choice1}
-                    </a>
+                    </a> <br/>
                     <a href="/">
                         {choice2} 
                     </a>
                     {/* </div> */}
+                </div>
+                <div className="bottom-menu">
+                <button type="button" className="start-over " onClick={ refreshPage }> 
+                    Start over
+                </button> 
+                </div>
                 </div>
             </DialogueDiv>
 
@@ -136,9 +145,13 @@ const DialogueDiv = styled.div`
     height: ${MAP_HEIGHT}px;
     width:320px; 
     border: 3px solid black ; 
+    display:flex;
+    flex-direction:column;
+
     margin-right: 2rem;
     h1 {
         text-align:center;
+        font-family: Courier, monospace;
     }
 
     a {
@@ -160,6 +173,19 @@ const DialogueDiv = styled.div`
         border-right: 4px solid #F314A7;
         // box-sizing: border-box;
     }
+
+    .bottom-menu{
+        bottom: 0;
+        font-family: Courier, monospace;
+    }
+
+    .text-div{
+        display:flex;
+        flex-direction:column;
+        justify-content:space-around;
+        height:540px;
+        font-size: 15x;
+    }
     
     @keyframes typing {
         from { 
@@ -177,6 +203,14 @@ const DialogueDiv = styled.div`
         50% { 
             border-color:  #F314A7; 
         }
+    }
+    .start-over {
+        background: #F314A7; 
+        height:auto;
+        color: white;
+        font-family: Courier, monospace;
+        font-size: 20px;
+        marging: 10px;
     }
 `
 
