@@ -8,7 +8,7 @@ import dialogue from "../../state/actions/dialogue";
 const textArray = [
     {
         id : 0,
-        "question": "Congratulation, you just got your dream internship.-You have the chance to be Beyoncé’s assistant!- But be careful, heavy is the hand who assist the crown.-Every day, you have to make the best decision.-Just don’t get fired.-Move to the closest bee case to get your first task! "
+        "question": "Congratulation, you just got your dream internship.-You have the chance to be Beyoncé’s assistant!- But be careful, heavy is the hand who assist the crown.-Every day, you have to make the best decision.-Just don’t get fired.-Move to the moving bee case to get your first task! "
         
     },
     {
@@ -115,9 +115,9 @@ const DialogueText = props => {
                     <div>
                         {display.split('-').map((item, i) => <p key={i}>{item}</p>)} 
                     </div>
-                    <a href="/">
+                    <a href="/" >
                         {choice1}
-                    </a> <br/>
+                    </a> <br/><br/>
                     <a href="/">
                         {choice2} 
                     </a>
@@ -156,7 +156,12 @@ const DialogueDiv = styled.div`
     }
 
     a {
-        text-coloration : none;
+        text-decoration: none;
+        
+    }
+
+    a:hoover {
+        color: #F314A7;
     }
     
     .typewriter {
@@ -185,7 +190,7 @@ const DialogueDiv = styled.div`
         flex-direction:column;
         justify-content:space-around;
         height:540px;
-        font-size: 15x;
+        font-size: 15px;
     }
     
     @keyframes typing {
