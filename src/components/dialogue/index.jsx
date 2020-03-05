@@ -136,6 +136,7 @@ const DialogueDiv = styled.div`
     height: ${MAP_HEIGHT}px;
     width:320px; 
     border: 3px solid black ; 
+    margin-right: 2rem;
     h1 {
         text-align:center;
     }

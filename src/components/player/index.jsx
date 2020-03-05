@@ -2,19 +2,18 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import walkSprite from './player_walk.png';
-import {
-	movePlayer,
-} from '../../state/actions/game';
+import playerImg from './player.png';
+import { movePlayer } from '../../state/actions/game';
+import {SPRITE_SIZE} from '../../utils/constants'
 
 const Player = ({
 	game: {
 		player: { position }
 	},
-	movePlayer,
+	movePlayer
 }) => {
 	useEffect(() => {
-		window.addEventListener('keydown', e => {
+		window.addEventListener('keyup', e => {
 			e.preventDefault();
 			switch (e.keyCode) {
 				case 38:
@@ -31,19 +30,24 @@ const Player = ({
 		});
 	}, []);
 
-	return <PlayerDiv position={position} />;
+	return <PlayerDiv position={position}>
+		<PlayerImg src={playerImg} alt=""/>
+	</PlayerDiv> ;
 };
 
 export default connect(state => state, {
-	movePlayer,
+	movePlayer
 })(Player);
 
 const PlayerDiv = styled.div`
 position: absolute;
 top: ${props => props.position[1]}px;
 left: ${props => props.position[0]}px;
-background-image: url('${walkSprite}');
-background-position: 0 0;
-width: 40px;
-height: 40px;
+width: ${SPRITE_SIZE}px;
+height: ${SPRITE_SIZE}px;
 `;
+
+const PlayerImg = styled.img`
+width: ${SPRITE_SIZE}px;
+height: ${SPRITE_SIZE}px;
+`
