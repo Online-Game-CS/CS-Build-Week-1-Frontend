@@ -135,26 +135,6 @@ const DialogueText = props => {
 }
 export default connect (state => state, {dialogue})(DialogueText);
 
-
-
-	return (
-		<>
-			<DialogueDiv>
-				<h1>Instruction</h1>
-				<div className="typewriter">
-					{/* <div className="typewriter-text"> */}
-
-					<div>{display}</div>
-					<a href="/">{choice1}</a>
-					<a href="/">{choice2}</a>
-					{/* </div> */}
-				</div>
-			</DialogueDiv>
-		</>
-	);
-};
-export default connect(state => state, { dialogue })(DialogueText);
-
 const DialogueDiv = styled.div`
     background: rgb(248, 248, 248);
     padding: 12px 24px;
