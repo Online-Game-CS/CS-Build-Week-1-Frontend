@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
 	WhiteDiv,
 	inputBackground,
+	titlePrimary,
 	wallBackground
 } from '../../styles';
 import { MAP_HEIGHT, MAP_WIDTH } from '../../utils/constants';
