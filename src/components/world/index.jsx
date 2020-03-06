@@ -15,9 +15,17 @@ const World = ({
 		player: { score }
 	},
 	initializePlayer,
-	completeGame
+	completeGame,
+	history
 }) => {
 	useEffect(() => {
+		const checkAuth = () => {
+			const token = localStorage.getItem('token');
+			if (!token) {
+				history.push('/')
+			}
+		};
+		checkAuth();
 		initializePlayer();
 	}, []);
 
@@ -42,7 +50,9 @@ const World = ({
 	);
 };
 
-export default withRouter(connect(state => state, { initializePlayer, completeGame })(World));
+export default withRouter(
+	connect(state => state, { initializePlayer, completeGame })(World)
+);
 
 const WorldDiv = styled.div`
 	position: relative;
