@@ -9,6 +9,7 @@ import { initializePlayer, completeGame } from '../../state/actions/game';
 import Dialogue from '../dialogue';
 import Fired from '../fired';
 import Complete from '../complete';
+import GameSound from "../../sound";
 
 const World = ({
 	game: {
@@ -38,11 +39,13 @@ const World = ({
 	return (
 		<div>
 			<MainDiv>
+
 				<Dialogue />
 				<WorldDiv>
 					<Complete />
 					<Fired />
 					<Map />
+				<GameSound/>
 					<Player />
 				</WorldDiv>
 			</MainDiv>
