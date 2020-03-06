@@ -4,9 +4,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { MAP_HEIGHT } from '../../utils/constants';
 import dialogue from '../../state/actions/dialogue';
 import { completeChallenge, failChallenge } from '../../state/actions/game';
+import { MainButton } from '../../styles';
 
 const textArray = [
 	{
@@ -114,9 +116,11 @@ const textArray = [
 ];
 
 const DialogueText = ({
+	history,
 	completeChallenge,
 	failChallenge,
 	game: {
+		isFinished,
 		player: { currentRoom, score }
 	}
 }) => {
@@ -189,7 +193,27 @@ const DialogueText = ({
 				<h1>Instruction</h1>
 				<div className="text-div">
 					<div className="typewriter">
-						{response ? (
+						{isFinished ? (
+							<div>
+								<CompleteContainer>
+									<p>
+										It&apos;s been a long day but you made it! You&apos;ve
+										successfully tackled every challenge thrown your way.
+									</p>
+
+									<p>Time for some well deserved rest... until tomorrow.</p>
+								</CompleteContainer>
+
+								<MainButton
+									type="button"
+									onClick={() => {
+										history.push('/credits');
+									}}
+								>
+									Credits
+								</MainButton>
+							</div>
+						) : response ? (
 							<div>{response}</div>
 						) : (
 							<div>
@@ -214,11 +238,13 @@ const DialogueText = ({
 		</>
 	);
 };
-export default connect(state => state, {
-	dialogue,
-	completeChallenge,
-	failChallenge
-})(DialogueText);
+export default withRouter(
+	connect(state => state, {
+		dialogue,
+		completeChallenge,
+		failChallenge
+	})(DialogueText)
+);
 
 const DialogueDiv = styled.div`
 	background: rgb(248, 248, 248);
@@ -307,3 +333,7 @@ const AnswerDiv = styled.div`
 		color: #f314a7;
 	}
 `;
+
+const CompleteContainer = styled.div`
+margin-bottom: 2rem;
+`
