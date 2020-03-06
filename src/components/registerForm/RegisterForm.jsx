@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withFormik, Form, Field } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import styled from 'styled-components';
 import { register } from '../../state/actions/auth';
 import { WhiteDiv, MainButton } from '../../styles';
@@ -51,8 +51,8 @@ const FormikRegisterForm = withFormik({
 	//     ),
 	//     password: Yup.string()
 	//       .min(
-	//         6,
-	//         "You password must have 6 characters. Try again."
+	//         8,
+	//         "You password must have min 8 characters. Try again."
 	//       )
 	//       .required("A password is required")
 	//   }),
