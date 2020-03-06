@@ -2,20 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withFormik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import styled from 'styled-components';
-import { register } from '../../state/actions/auth';
-import { WhiteDiv, MainButton } from '../../styles';
-
-
-function FormTemplate({  touched, errors }) {
+import * as Yup  touched, errors }) {
 	return (
 		<RegisterContainer>
 			<h1> Register</h1>
 			<Form className="formik-form">
 				<div className="field-container">
 					<div className="input-title">Username</div>
-					<Field type="text" name="username" />
+							<Field type="text" name="username" />
 					{touched.username && errors.username}
 				</div>
 				<div className="field-container">
