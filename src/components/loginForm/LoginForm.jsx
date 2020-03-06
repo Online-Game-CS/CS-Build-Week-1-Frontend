@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withFormik, Form, Field } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import { login } from '../../state/actions/auth';
 import { WhiteDiv, MainButton } from '../../styles';
 
@@ -52,7 +52,7 @@ const FormikLoginForm = withFormik({
 	//     ),
 	//     password: Yup.string()
 	//       .min(
-	//         3,
+	//         8,
 	//         "Try again."
 	//       )
 	//       .required
