@@ -1,15 +1,15 @@
 import * as types from '../types';
 
 const initialState = {
-	rooms: [],
+	rooms: JSON.parse(localStorage.getItem('rooms')) || [],
 	player: {
 		position: [0, 0],
 		currentRoom: '',
-		score: 0
+		score: JSON.parse(localStorage.getItem('score')) || 0
 	},
 	isFetching: false,
-	isFired: false,
-	isFinished: false
+	isFired: JSON.parse(localStorage.getItem('isFired')) || false,
+	isFinished: JSON.parse(localStorage.getItem('isFinished')) || false
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -55,7 +55,7 @@ const gameReducer = (state = initialState, action) => {
 				isFetching: false,
 				player: {
 					...state.player,
-					score: action.payload.score
+					score: action.payload
 				}
 			};
 
