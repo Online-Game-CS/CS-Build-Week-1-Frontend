@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withFormik, Form, Field } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import styled from 'styled-components';
 import { register } from '../../state/actions/auth';
 import { WhiteDiv, MainButton } from '../../styles';
@@ -19,8 +19,9 @@ function FormTemplate({ touched, errors }) {
 				</div>
 				<div className="field-container">
 					<div className="input-title">Password</div>
-					{touched.password1 && errors.password1}
+
 					<Field type="password" name="password1" />
+					{touched.password1 && errors.password1}
 				</div>
 				<div className="field-container">
 					<div className="input-title">Confirm Password</div>
@@ -44,22 +45,29 @@ const FormikRegisterForm = withFormik({
 			password2: password2 || ''
 		};
 	},
-	//   Validation //
-	//   validationSchema: Yup.object().shape({
-	//     username: Yup.string().required(
-	//       " Username is required "
-	//     ),
-	//     password: Yup.string()
-	//       .min(
-	//         6,
-	//         "You password must have 6 characters. Try again."
-	//       )
-	//       .required("A password is required")
-	//   }),
-	handleSubmit(values, { props }) {
-		props.register(values, props.history);
-	}
+
+	validationSchema: Yup.object().shape({
+		username: Yup.string().required(
+			" Username is required "
+		),
+		password1: Yup.string()
+			.min(
+				8,
+				"You password must have min 8 characters. Try again."
+			)
+			.required("A password is required"),
+		password2: Yup.string()
+			.min(
+				8,
+				"You password must have min 8 characters. Try again."
+			)
+			.required("A password is required")
+	}),
+handleSubmit(values, { props }) {
+	props.register(values, props.history);
+}
 })(FormTemplate);
+
 
 export default connect(state => state, { register })(FormikRegisterForm);
 
