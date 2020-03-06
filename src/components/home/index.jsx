@@ -14,7 +14,8 @@ const Home = ({ auth: { isLoggedIn } }) => {
 			<TitleImg src={titleImg} />
 			<br />
 			<Menu>
-				<Link to="/game">Play</Link>
+				{isLoggedIn ? <Link to="/game">Play</Link> : null}
+
 				{isLoggedIn ? (
 					<div className="logout" onClick={() => logout()}>
 						Logout

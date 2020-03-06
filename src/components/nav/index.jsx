@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import bee from '../../styles/bee.png';
-import speaker from '../../styles/speaker.png';
 import { logout } from '../../state/actions/auth';
 
 const NavBar = ({ history }) => {
@@ -14,9 +13,7 @@ const NavBar = ({ history }) => {
 			<div onClick={() => history.push('/')}>
 				<Logo src={bee} />
 			</div>
-			<div>
-				<Logo src={speaker} />
-			</div>
+			<div/>
 		</NavContainer>
 	);
 };
