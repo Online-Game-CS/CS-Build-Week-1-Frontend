@@ -125,7 +125,9 @@ const DialogueText = ({
 	const [choice1, setChoice1] = useState('');
 	const [choice2, setChoice2] = useState('');
 	const [answer, setAnswer] = useState('');
-	const [response, setResponse] = useState('');
+	const [response, setResponse] = useState(
+		localStorage.getItem('response') || ''
+	);
 
 	useEffect(() => {
 		if (currentRoom) {
@@ -143,20 +145,40 @@ const DialogueText = ({
 		if (answer === choice) {
 			completeChallenge();
 			setResponse('You survived the challenge! Move on to your next task.');
+			localStorage.setItem(
+				'response',
+				'You survived the challenge! Move on to your next task.'
+			);
 		} else if (currentRoom.question === 6) {
 			completeChallenge();
 			completeChallenge();
 			setResponse('You survived the challenge! Move on to your next task.');
+			localStorage.setItem(
+				'response',
+				'You survived the challenge! Move on to your next task.'
+			);
 		} else {
 			failChallenge();
 			if (currentRoom.question === 7) {
 				if (choice === 'choice_1') {
 					setResponse(textArray[currentRoom.question].fail_response_1);
+					localStorage.setItem(
+						'response',
+						textArray[currentRoom.question].fail_response_1
+					);
 				} else {
 					setResponse(textArray[currentRoom.question].fail_response_2);
+					localStorage.setItem(
+						'response',
+						textArray[currentRoom.question].fail_response_2
+					);
 				}
 			} else {
 				setResponse(textArray[currentRoom.question].fail_response);
+				localStorage.setItem(
+					'response',
+					textArray[currentRoom.question].fail_response
+				);
 			}
 		}
 	};

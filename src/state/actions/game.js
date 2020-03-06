@@ -10,7 +10,7 @@ export const getRooms = () => async dispatch => {
 		const response = await axiosWithAuth().get(
 			`${process.env.REACT_APP_API_BASE_URL}api/adv/getrooms/`
 		);
-
+		localStorage.setItem('rooms', JSON.stringify(response.data.rooms))
 		dispatch({
 			type: types.GET_ROOMS_SUCCESS,
 			payload: response.data.rooms.sort((a, b) => a.id - b.id)
@@ -88,9 +88,11 @@ export const completeChallenge = () => async dispatch => {
 			`${process.env.REACT_APP_API_BASE_URL}api/adv/completechallenge/`
 		);
 
+		localStorage.setItem('score', JSON.stringify(response.data.score))
+
 		dispatch({
 			type: types.COMPLETE_CHALLENGE_SUCCESS,
-			payload: response.data
+			payload: response.data.score
 		});
 	} catch (err) {
 		dispatch({
@@ -101,12 +103,16 @@ export const completeChallenge = () => async dispatch => {
 };
 
 export const failChallenge = () => dispatch => {
+
+	localStorage.setItem('isFired', JSON.stringify(true))
 	dispatch({
 		type: types.FAIL_CHALLENGE
 	});
 };
 
 export const completeGame = () => dispatch => {
+
+	localStorage.setItem('isFinished', JSON.stringify(true))
 	dispatch({
 		type: types.COMPLETE_GAME
 	});
