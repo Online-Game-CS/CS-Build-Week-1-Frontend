@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { MAP_WIDTH, MAP_HEIGHT } from '../../utils/constants';
 import Room from '../room';
 
+
 const Map = ({ game: { rooms } }) => {
 	return (
+	
 		<MapDiv>
-			{rooms.map(room => {
-				return <Room  key={room.id} {...room} />;
-			})}
+				{rooms.map(room => {
+					return <Room  key={room.id} {...room} />;
+				})}
 		</MapDiv>
 	);
 };
