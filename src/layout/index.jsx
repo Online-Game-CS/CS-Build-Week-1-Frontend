@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NavBar from '../components/nav';
-import { backgroundPrimary } from '../styles';
+import { backgroundPrimary, tablet } from '../styles';
 import store from '../state/store';
 import { getRooms } from '../state/actions/game';
 
@@ -29,7 +29,7 @@ const Layout = ({
 	return (
 		<Route
 			{...rest}
-			render={props => {
+			render={(props) => {
 				return (
 					<LayoutContainer>
 						<NavBar />
@@ -43,12 +43,15 @@ const Layout = ({
 	);
 };
 
-export default connect(state => state, { getRooms })(Layout);
+export default connect((state) => state, { getRooms })(Layout);
 
 const LayoutContainer = styled.div`
 	height: 100vh;
 	width: 100%;
 	background-color: ${backgroundPrimary};
+	@media ${tablet} {
+		overflow-y: scroll;
+	}
 `;
 
 const ComponentContainer = styled.div`
@@ -57,4 +60,7 @@ const ComponentContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	height: 80%;
+	@media ${tablet} {
+		padding-bottom: 3rem;
+	}
 `;

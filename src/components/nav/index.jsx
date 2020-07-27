@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import bee from '../../styles/bee.png';
 import { logout } from '../../state/actions/auth';
+import { tablet } from '../../styles';
 
 const NavBar = ({ history }) => {
 	return (
@@ -13,12 +14,12 @@ const NavBar = ({ history }) => {
 			<div onClick={() => history.push('/')}>
 				<Logo src={bee} />
 			</div>
-			<div/>
+			<div />
 		</NavContainer>
 	);
 };
 
-export default withRouter(connect(state => state, { logout })(NavBar));
+export default withRouter(connect((state) => state, { logout })(NavBar));
 
 const NavContainer = styled.div`
 	display: flex;
@@ -27,6 +28,10 @@ const NavContainer = styled.div`
 	align-items: center;
 	height: 50px;
 	padding: 2rem 2rem 1rem 2rem;
+
+	@media ${tablet} {
+		padding: 1rem;
+	}
 `;
 
 const Logo = styled.img`

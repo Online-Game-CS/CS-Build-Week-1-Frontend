@@ -4,36 +4,48 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { WhiteDiv, Menu } from '../../styles';
+import { WhiteDiv, Menu, tablet } from '../../styles';
 import titleImg from '../../styles/title.png';
 import { logout } from '../../state/actions/auth';
+import Spinner from '../../styles/Spinner';
 
-const Home = ({ auth: { isLoggedIn } }) => {
+const Home = ({
+	auth: { isLoggedIn, isFetching },
+	game: { isFetchingInitial },
+}) => {
 	return (
 		<HomeContainer>
 			<TitleImg src={titleImg} />
 			<br />
-			<Menu>
-				{isLoggedIn ? <Link to="/game">Play</Link> : null}
+			{isFetching || isFetchingInitial ? (
+				<Spinner />
+			) : (
+				<Menu>
+					{isLoggedIn ? <Link to="/game">Play</Link> : null}
 
-				{isLoggedIn ? (
-					<div className="logout" onClick={() => logout()}>
-						Logout
-					</div>
-				) : (
-					<Link to="/login">Login</Link>
-				)}
-				<Link to="/credits">Credits</Link>
-			</Menu>
+					{isLoggedIn ? (
+						<div className="logout" onClick={() => logout()}>
+							Logout
+						</div>
+					) : (
+						<Link to="/login">Login</Link>
+					)}
+					<Link to="/credits">Credits</Link>
+				</Menu>
+			)}
 		</HomeContainer>
 	);
 };
 
-export default connect(state => state, { logout })(Home);
+export default connect((state) => state, { logout })(Home);
 
 const TitleImg = styled.img`
 	height: auto;
 	width: auto;
+	@media ${tablet} {
+		max-height: 90vh;
+		max-width: 90vw;
+	}
 `;
 
 const HomeContainer = styled(WhiteDiv)`
