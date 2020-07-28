@@ -37,6 +37,7 @@ export const WhiteDiv = styled.div`
 	border: 1px solid ${borderYellow};
 	box-sizing: border-box;
 	box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+	
 	@media ${tablet} {
 		max-height: 90vh;
 		max-width: 90vw;

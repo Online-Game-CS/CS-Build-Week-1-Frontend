@@ -252,6 +252,14 @@ const DialogueText = ({
 								<AnswerDiv onClick={() => handleAnswer('choice_2')}>
 									{choice2}
 								</AnswerDiv>
+								<InitialInstructionsButton
+									currentRoom={currentRoom}
+									onClick={() => {
+										setShowDialog(false);
+									}}
+								>
+									Close
+								</InitialInstructionsButton>
 							</div>
 						)}
 					</div>
@@ -286,8 +294,7 @@ const DialogueDiv = styled.div`
 	}
 
 	@media ${mobile} {
-		height: auto;
-		border: none;
+		overflow-y: scroll;
 	}
 	h1 {
 		text-align: center;
@@ -386,4 +393,11 @@ const ResponseButton = styled(MainButton)`
 	@media ${tablet} {
 		display: block;
 	}
+`;
+
+const InitialInstructionsButton = styled(ResponseButton)`
+	@media ${tablet} {
+		display: ${(props) => (props.currentRoom && props.currentRoom.question === 0 && !props.currentRoom.bee ? 'flex' : 'none')};
+	}
+
 `;

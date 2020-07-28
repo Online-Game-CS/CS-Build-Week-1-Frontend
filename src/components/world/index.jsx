@@ -14,6 +14,7 @@ import { initializePlayer, completeGame } from '../../state/actions/game';
 import Dialogue from '../dialogue';
 import Fired from '../fired';
 import Complete from '../complete';
+import Movement from '../movement/index';
 // import GameSound from '../../sound';
 import { tablet, mobile } from '../../styles';
 
@@ -55,6 +56,7 @@ const World = ({
 					{/* <GameSound /> */}
 					<Player />
 				</WorldDiv>
+				<Movement />
 			</MainDiv>
 		</div>
 	);
@@ -71,6 +73,9 @@ const WorldDiv = styled.div`
 	width: ${MAP_WIDTH}px;
 	height: ${MAP_HEIGHT}px;
 	box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+	@media ${tablet} {
+		margin-top: 0;
+	}
 	@media ${mobile} {
 		width: ${MAP_WIDTH_MOB}px;
 		height: ${MAP_HEIGHT_MOB}px;
@@ -83,16 +88,17 @@ const MainDiv = styled.div`
 	justify-content: center;
 	align-items: center;
 	width: 1200px;
-	max-width: 90vw;
+	max-width: 100vw;
 	height: ${MAP_HEIGHT}px;
 	position: relative;
 
 	@media ${tablet} {
+		height: auto;
 		width: ${MAP_WIDTH}px;
+		flex-direction: column;
 	}
 	@media ${mobile} {
-		height: ${MAP_HEIGHT_MOB}px;
-		width: ${MAP_HEIGHT_MOB}px;
+		width: ${MAP_WIDTH_MOB}px;
 	}
 `;
 
@@ -111,7 +117,5 @@ const DialogContainer = styled.div`
 	@media ${mobile} {
 		height: ${MAP_HEIGHT_MOB}px;
 		width: ${MAP_HEIGHT_MOB}px;
-		overflow-y: scroll;
-		border: 3px solid black;
 	}
 `;

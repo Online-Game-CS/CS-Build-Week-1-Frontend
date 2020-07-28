@@ -50,7 +50,8 @@ const LayoutContainer = styled.div`
 	width: 100%;
 	background-color: ${backgroundPrimary};
 	@media ${tablet} {
-		overflow-y: scroll;
+		overflow-y: hidden;
+		max-width: 100vw;
 	}
 `;
 
@@ -62,5 +63,6 @@ const ComponentContainer = styled.div`
 	height: 80%;
 	@media ${tablet} {
 		padding-bottom: 3rem;
+		overflow-y: hidden;
 	}
 `;

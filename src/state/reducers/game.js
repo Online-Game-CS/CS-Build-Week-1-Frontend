@@ -18,12 +18,17 @@ const gameReducer = (state = initialState, action) => {
 		// Starting Requests
 		case types.GET_ROOMS_START:
 		case types.INIT_PLAYER_START:
+			return {
+				...state,
+				isFetching: true,
+				isFetchingInitial: true,
+			};
+
 		case types.MOVE_PLAYER_START:
 		case types.COMPLETE_CHALLENGE_START:
 			return {
 				...state,
 				isFetching: true,
-				isFetchingInitial: true,
 			};
 
 		// Request Successes

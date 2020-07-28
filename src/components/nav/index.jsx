@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import bee from '../../styles/bee.png';
 import { logout } from '../../state/actions/auth';
-import { tablet } from '../../styles';
+import { tablet, mobile } from '../../styles';
 
 const NavBar = ({ history }) => {
 	return (
@@ -31,6 +31,11 @@ const NavContainer = styled.div`
 
 	@media ${tablet} {
 		padding: 1rem;
+		height: auto;
+	}
+
+	@media ${mobile} {
+		padding: 0.5rem;
 	}
 `;
 
@@ -39,5 +44,9 @@ const Logo = styled.img`
 	width: 53px;
 	&:hover {
 		cursor: pointer;
+	}
+	@media ${mobile} {
+		height: 40px;
+		width: 40px;
 	}
 `;
