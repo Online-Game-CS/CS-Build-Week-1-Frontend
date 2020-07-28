@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { SPRITE_SIZE } from '../../utils/constants';
+import { SPRITE_SIZE, SPRITE_SIZE_MOB } from '../../utils/constants';
 import Bee from '../bee';
 import {
 	titlePrimary,
 	titleSecondary,
 	inputBackground,
-	wallBackground
+	wallBackground,
+	mobile
 } from '../../styles';
 
 // j = x, i = y
@@ -38,4 +39,9 @@ const RoomDiv = styled.div`
 	}};
 	border: 1px solid ${inputBackground};
 	box-sizing: border-box;
+
+	@media ${mobile} {
+		height: ${SPRITE_SIZE_MOB}px;
+	width: ${SPRITE_SIZE_MOB}px;
+	}
 `;

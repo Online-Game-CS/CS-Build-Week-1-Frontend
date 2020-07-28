@@ -4,23 +4,29 @@ import { connect } from 'react-redux';
 import {
 	WhiteDiv,
 	inputBackground,
-	wallBackground
+	wallBackground,
+	mobile,
 } from '../../styles';
-import { MAP_HEIGHT, MAP_WIDTH } from '../../utils/constants';
+import {
+	MAP_HEIGHT,
+	MAP_WIDTH,
+	MAP_HEIGHT_MOB,
+	MAP_WIDTH_MOB,
+} from '../../utils/constants';
 import winnerBee from '../../styles/winnerBee.png';
 
 const Complete = ({ game: { isFinished } }) => {
 	return (
 		<CompleteContainer isFinished={isFinished}>
 			<CompletedDiv>
-        <WinnerImg src={winnerBee} alt="winner"/>
+				<WinnerImg src={winnerBee} alt="winner" />
 				<h2>Congratulations!</h2>
 			</CompletedDiv>
 		</CompleteContainer>
 	);
 };
 
-export default connect(state => state)(Complete);
+export default connect((state) => state)(Complete);
 
 const CompleteContainer = styled.div`
 	position: absolute;
@@ -28,10 +34,14 @@ const CompleteContainer = styled.div`
 	height: ${MAP_HEIGHT}px;
 	width: ${MAP_WIDTH}px;
 	/* display: flex; */
-	display: ${props => (props.isFinished ? 'flex' : 'none')};
+	display: ${(props) => (props.isFinished ? 'flex' : 'none')};
 	justify-content: center;
 	align-items: center;
 	background-color: ${inputBackground};
+	@media ${mobile} {
+		height: ${MAP_HEIGHT_MOB}px;
+		width: ${MAP_WIDTH_MOB}px;
+	}
 `;
 
 const CompletedDiv = styled(WhiteDiv)`
@@ -42,9 +52,14 @@ const CompletedDiv = styled(WhiteDiv)`
 	border: 1px solid black;
 	background-color: ${wallBackground};
 
-  h2 {
-    margin: 0;
-  }
+	h2 {
+		margin: 0;
+	}
+
+	@media ${mobile} {
+		width: ${MAP_WIDTH_MOB}px;
+		height: ${MAP_HEIGHT_MOB}px;
+	}
 `;
 
 const WinnerImg = styled.img`

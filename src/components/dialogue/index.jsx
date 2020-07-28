@@ -8,13 +8,13 @@ import { withRouter } from 'react-router-dom';
 import { MAP_HEIGHT } from '../../utils/constants';
 import dialogue from '../../state/actions/dialogue';
 import { completeChallenge, failChallenge } from '../../state/actions/game';
-import { MainButton } from '../../styles';
+import { MainButton, tablet, mobile } from '../../styles';
 
 const textArray = [
 	{
 		id: 0,
 		question:
-			'Congratulations, you just got your dream internship.-You have the chance to be Beyoncé’s assistant!- But be careful, heavy is the hand who assist the crown.-Every day, you have to make the best decision.-Just don’t get fired.-Move to the moving bee case to get your first task! '
+			'Congratulations, you just got your dream internship.-You have the chance to be Beyoncé’s assistant!- But be careful, heavy is the hand who assist the crown.-Every day, you have to make the best decision.-Just don’t get fired.-Move to the moving bee case to get your first task! ',
 	},
 	{
 		id: 1,
@@ -24,7 +24,7 @@ const textArray = [
 		choice_2: 'Click here if you chose the 5 star breakfast.',
 		answer: 'choice_1',
 		fail_response:
-			'She yells at you “are you trying to make me fat like you?!” then has her team of lawyers send you a termination letter.'
+			'She yells at you “are you trying to make me fat like you?!” then has her team of lawyers send you a termination letter.',
 	},
 	{
 		id: 2,
@@ -34,7 +34,7 @@ const textArray = [
 		choice_2: 'Click here if you’re FaceTiming Blue Ivy ',
 		answer: 'choice_2',
 		fail_response:
-			'She says “She’s only 2....” then has her team of lawyers send you a termination letter.'
+			'She says “She’s only 2....” then has her team of lawyers send you a termination letter.',
 	},
 	{
 		id: 3,
@@ -44,7 +44,7 @@ const textArray = [
 		choice_2: 'Click here if you chose drinking and gossiping',
 		answer: 'choice_1',
 		fail_response:
-			'She tells you “I’m not going to get drunk before an event and gossip with some peasant” then calls a new assistant.'
+			'She tells you “I’m not going to get drunk before an event and gossip with some peasant” then calls a new assistant.',
 	},
 	{
 		id: 4,
@@ -53,7 +53,7 @@ const textArray = [
 		choice_1: 'Click here if you chose sandcastles ',
 		choice_2: 'Click here if you chose All Night',
 		answer: 'choice_2',
-		fail_response: 'She starts crying then fires you after the 3:03 minutes'
+		fail_response: 'She starts crying then fires you after the 3:03 minutes',
 	},
 	{
 		id: 5,
@@ -63,7 +63,7 @@ const textArray = [
 		choice_2: 'Click here if she should go to the hotel and get ready ',
 		answer: 'choice_2',
 		fail_response:
-			'She got car sick and threw up all over her outfit. You’ve been kicked out of the car and fired.'
+			'She got car sick and threw up all over her outfit. You’ve been kicked out of the car and fired.',
 	},
 	{
 		id: 6,
@@ -71,7 +71,7 @@ const textArray = [
 			'She’s arrived at the hotel but the paparazzi have already spotted her Maybach.-Should she risk being spotted at this event that she’s supposed to make a surprise appearance or run late and go to another hotel?',
 		choice_1: 'Click here if she should risk being spotted',
 		choice_2: 'Click here if she should run late and go to another hotel ',
-		answer: 'choice_1'
+		answer: 'choice_1',
 	},
 	{
 		id: 7,
@@ -84,7 +84,7 @@ const textArray = [
 		fail_response_1:
 			'Beyoncé was kidnapped so Beyoncé’s other assistant fires you.',
 		fail_response_2:
-			'She’s been spotted and you ruin a whole era so she fires you'
+			'She’s been spotted and you ruin a whole era so she fires you',
 	},
 	{
 		id: 8,
@@ -93,7 +93,7 @@ const textArray = [
 		choice_1: 'Click here if you chose the West Suite',
 		choice_2: 'Click here if you chose the Motel 6 ',
 		answer: 'choice_2',
-		fail_response: 'Beyoncé says nothing. Julius has fired you.'
+		fail_response: 'Beyoncé says nothing. Julius has fired you.',
 	},
 	{
 		id: 9,
@@ -102,7 +102,7 @@ const textArray = [
 		choice_1: 'Click here if you chose the West Suite',
 		choice_2: 'Click here if you chose the Motel 6 ',
 		answer: 'choice_2',
-		fail_response: 'Beyoncé says nothing. Julius has fired you.'
+		fail_response: 'Beyoncé says nothing. Julius has fired you.',
 	},
 	{
 		id: 10,
@@ -111,8 +111,9 @@ const textArray = [
 		choice_1: 'Yes!',
 		choice_2: 'No, I want to keep breathing beyoncé air till I die',
 		answer: 'choice_1',
-		fail_response: 'The Queen loves her privacy, plus you’re being creepy... ew'
-	}
+		fail_response:
+			'The Queen loves her privacy, plus you’re being creepy... ew',
+	},
 ];
 
 const DialogueText = ({
@@ -121,8 +122,8 @@ const DialogueText = ({
 	failChallenge,
 	game: {
 		isFinished,
-		player: { currentRoom, score }
-	}
+		player: { currentRoom, score },
+	},
 }) => {
 	// debugger
 	const [display, setDisplay] = useState(textArray[0].question);
@@ -132,6 +133,7 @@ const DialogueText = ({
 	const [response, setResponse] = useState(
 		localStorage.getItem('response') || ''
 	);
+	const [showDialog, setShowDialog] = useState('true');
 
 	useEffect(() => {
 		if (currentRoom) {
@@ -145,7 +147,17 @@ const DialogueText = ({
 		}
 	}, [currentRoom]);
 
-	const handleAnswer = choice => {
+	useEffect(() => {
+		if (
+			currentRoom &&
+			currentRoom.bee === true &&
+			currentRoom.question === score + 1
+		) {
+			setShowDialog(true);
+		}
+	}, [currentRoom]);
+
+	const handleAnswer = (choice) => {
 		if (answer === choice) {
 			completeChallenge();
 			setResponse('You survived the challenge! Move on to your next task.');
@@ -189,7 +201,7 @@ const DialogueText = ({
 
 	return (
 		<>
-			<DialogueDiv>
+			<DialogueDiv showDialog={showDialog}>
 				<h1>Instruction</h1>
 				<div className="text-div">
 					<div className="typewriter">
@@ -214,7 +226,17 @@ const DialogueText = ({
 								</MainButton>
 							</div>
 						) : response ? (
-							<div>{response}</div>
+							<ResponseContainer>
+								<div>{response}</div>
+								<ResponseButton
+									type="button"
+									onClick={() => {
+										setShowDialog(false);
+									}}
+								>
+									Close
+								</ResponseButton>
+							</ResponseContainer>
 						) : (
 							<div>
 								<div>
@@ -230,6 +252,14 @@ const DialogueText = ({
 								<AnswerDiv onClick={() => handleAnswer('choice_2')}>
 									{choice2}
 								</AnswerDiv>
+								<InitialInstructionsButton
+									currentRoom={currentRoom}
+									onClick={() => {
+										setShowDialog(false);
+									}}
+								>
+									Close
+								</InitialInstructionsButton>
 							</div>
 						)}
 					</div>
@@ -239,10 +269,10 @@ const DialogueText = ({
 	);
 };
 export default withRouter(
-	connect(state => state, {
+	connect((state) => state, {
 		dialogue,
 		completeChallenge,
-		failChallenge
+		failChallenge,
 	})(DialogueText)
 );
 
@@ -254,9 +284,18 @@ const DialogueDiv = styled.div`
 	border: 3px solid black;
 	display: flex;
 	flex-direction: column;
-
 	margin-right: 2rem;
 	box-sizing: border-box;
+	@media ${tablet} {
+		width: 100%;
+		height: 100%;
+		margin-right: 0;
+		display: ${(props) => (props.showDialog ? 'flex' : 'none')};
+	}
+
+	@media ${mobile} {
+		overflow-y: scroll;
+	}
 	h1 {
 		text-align: center;
 		font-family: Courier, monospace;
@@ -335,5 +374,30 @@ const AnswerDiv = styled.div`
 `;
 
 const CompleteContainer = styled.div`
-margin-bottom: 2rem;
-`
+	margin-bottom: 2rem;
+`;
+const ResponseContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ResponseButton = styled(MainButton)`
+	width: auto;
+	padding: 0.5rem 1rem;
+	font-size: 1.3rem;
+	margin-top: 2rem;
+	display: none;
+
+	@media ${tablet} {
+		display: block;
+	}
+`;
+
+const InitialInstructionsButton = styled(ResponseButton)`
+	@media ${tablet} {
+		display: ${(props) => (props.currentRoom && props.currentRoom.question === 0 && !props.currentRoom.bee ? 'flex' : 'none')};
+	}
+
+`;

@@ -5,11 +5,12 @@ const initialState = {
 	player: {
 		position: [0, 0],
 		currentRoom: '',
-		score: JSON.parse(localStorage.getItem('score')) || 0
+		score: JSON.parse(localStorage.getItem('score')) || 0,
 	},
 	isFetching: false,
+	isFetchingInitial: false,
 	isFired: JSON.parse(localStorage.getItem('isFired')) || false,
-	isFinished: JSON.parse(localStorage.getItem('isFinished')) || false
+	isFinished: JSON.parse(localStorage.getItem('isFinished')) || false,
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -17,11 +18,17 @@ const gameReducer = (state = initialState, action) => {
 		// Starting Requests
 		case types.GET_ROOMS_START:
 		case types.INIT_PLAYER_START:
+			return {
+				...state,
+				isFetching: true,
+				isFetchingInitial: true,
+			};
+
 		case types.MOVE_PLAYER_START:
 		case types.COMPLETE_CHALLENGE_START:
 			return {
 				...state,
-				isFetching: true
+				isFetching: true,
 			};
 
 		// Request Successes
@@ -29,14 +36,16 @@ const gameReducer = (state = initialState, action) => {
 			return {
 				...state,
 				rooms: action.payload,
-				isFetching: false
+				isFetching: false,
+				isFetchingInitial: false,
 			};
 
 		case types.INIT_PLAYER_SUCCESS:
 			return {
 				...state,
 				isFetching: false,
-				player: { ...state.player, ...action.payload }
+				isFetchingInitial: false,
+				player: { ...state.player, ...action.payload },
 			};
 
 		case types.MOVE_PLAYER_SUCCESS:
@@ -45,8 +54,8 @@ const gameReducer = (state = initialState, action) => {
 				isFetching: false,
 				player: {
 					...state.player,
-					...action.payload
-				}
+					...action.payload,
+				},
 			};
 
 		case types.COMPLETE_CHALLENGE_SUCCESS:
@@ -55,20 +64,20 @@ const gameReducer = (state = initialState, action) => {
 				isFetching: false,
 				player: {
 					...state.player,
-					score: action.payload
-				}
+					score: action.payload,
+				},
 			};
 
 		case types.FAIL_CHALLENGE:
 			return {
 				...state,
-				isFired: true
+				isFired: true,
 			};
 
 		case types.COMPLETE_GAME:
 			return {
 				...state,
-				isFinished: true
+				isFinished: true,
 			};
 
 		// Request Failures
@@ -77,7 +86,8 @@ const gameReducer = (state = initialState, action) => {
 		case types.COMPLETE_CHALLENGE_FAILURE:
 			return {
 				...state,
-				isFetching: false
+				isFetching: false,
+				isFetchingInitial: false,
 			};
 
 		default:

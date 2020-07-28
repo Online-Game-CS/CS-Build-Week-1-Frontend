@@ -6,7 +6,7 @@ export const backgroundPrimary = '#FFD500';
 export const backgroundLight = '#FFFFFF';
 export const buttonPrimary = '#F314A7';
 export const inputBackground = 'rgba(196, 196, 196, 0.21)';
-export const wallBackground = '#696b70'
+export const wallBackground = '#696b70';
 
 // Font
 export const titlePrimary = '#F89F00';
@@ -19,6 +19,10 @@ export const borderYellow = '#fde600';
 // Fonts
 export const headerFont = "'Saira Extra Condensed', sans-serif";
 export const primaryFont = "'Saira Semi Condensed', sans-serif";
+
+// Media Queries
+export const mobile = '(max-device-width : 480px)';
+export const tablet = '(max-device-width : 1024px)';
 
 // white window
 
@@ -33,6 +37,12 @@ export const WhiteDiv = styled.div`
 	border: 1px solid ${borderYellow};
 	box-sizing: border-box;
 	box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+	
+	@media ${tablet} {
+		max-height: 90vh;
+		max-width: 90vw;
+		overflow: hidden;
+	}
 
 	/* h1 is the titlePrimary */
 
@@ -189,9 +199,9 @@ export const MainButton = styled.button`
 	color: ${backgroundLight};
 	text-transform: uppercase;
 	margin-top: 1rem;
-
-	&:hover {
-		cursor: pointer;
+	cursor: pointer;
+	@media ${tablet} {
+		max-width: 90%;
 	}
 `;
 
